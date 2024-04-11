@@ -1,5 +1,5 @@
 {
-  "name": "learnlingo",
+  "name": "learn-lingo",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -11,11 +11,13 @@
   },
   "dependencies": {
     "i18next": "^23.11.1",
+    "modern-normalize": "^2.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-i18next": "^14.1.0",
     "react-router-dom": "^6.22.3",
-    "react-toastify": "^10.0.5"
+    "react-toastify": "^10.0.5",
+    "styled-components": "^6.1.8"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
