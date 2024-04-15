@@ -1,6 +1,8 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import Layout from "../components/Layout/Layout";
-import Home from "../components/Home/Home";
+import Home from "../pages/Home/Home";
+import Teachers from "../pages/Teachers/Teachers";
+import Favorites from "../pages/Favorites/Favorites";
 
 function App() {
   return (
@@ -8,8 +10,10 @@ function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
+          <Route path="/teachers" element={<Teachers />} />
+          <Route path="/favorites" element={<Favorites />} />
         </Route>
-        <Route path="*" element={<Home />} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </>
   );
