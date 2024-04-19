@@ -1,5 +1,11 @@
+import TeachersFilter from "../../components/TeachersFilter/TeachersFilter";
+
 const Teachers = () => {
-  return <div>Teachers</div>;
+  return (
+    <section>
+      <TeachersFilter />
+    </section>
+  );
 };
 
 export default Teachers;
