@@ -37,6 +37,7 @@ const Header = () => {
 
       {isModalRegister && (
         <>
+          <Backdrop />
           <ModalRegister />
         </>
       )}
