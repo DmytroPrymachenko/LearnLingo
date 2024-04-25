@@ -1,19 +1,20 @@
 import { useDispatch } from "react-redux";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { setUser } from "store/slices/userSlise";
+import { setUser } from "../../../store/slices/userSlice";
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
 
 const ModalRegister = () => {
   const [email, setEmail] = useState("");
-  const [pass, setPass] = useState("");
+  const [password, setPass] = useState("");
   const [name, setName] = useState("");
-  const { push } = useHistory();
+  // const [confirmPassword, setConfirmPassword] = useState("");
 
   const dispatch = useDispatch();
 
-  const handleRegister = (email, password) => {
+  const handleRegister = (e) => {
+    e.preventDefault();
     const auth = getAuth();
+    console.log(auth);
     createUserWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
         console.log(user);
@@ -24,7 +25,6 @@ const ModalRegister = () => {
             token: user.accessToken,
           })
         );
-        push("/teachers");
       })
       .catch(console.error);
   };
@@ -47,10 +47,16 @@ const ModalRegister = () => {
           />
           <input
             type="password"
-            value={pass}
+            value={password}
             onChange={(e) => setPass(e.target.value)}
             placeholder="password"
           />
+          {/* <input
+            type="password"
+            value={password}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            placeholder="confirm Password"
+          /> */}
           <button onClick={handleRegister}>Zaloginetsy</button>
         </form>
       </div>

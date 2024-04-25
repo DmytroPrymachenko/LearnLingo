@@ -1,17 +1,17 @@
 import { useDispatch } from "react-redux";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { useHistory } from "react-router-dom";
-import { setUser } from "store/slices/userSlise";
+
+import { setUser } from "../../../store/slices/userSlice";
 import { useState } from "react";
 
 const ModalLogin = () => {
   const [email, setEmail] = useState("");
-  const [pass, setPass] = useState("");
-  const { push } = useHistory();
+  const [password, setPass] = useState("");
 
   const dispatch = useDispatch();
 
-  const handleLogin = (email, password) => {
+  const handleLogin = (e) => {
+    e.preventDefault();
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
@@ -23,7 +23,6 @@ const ModalLogin = () => {
             token: user.accessToken,
           })
         );
-        push("/teachers");
       })
       .catch(console.error);
   };
@@ -41,7 +40,7 @@ const ModalLogin = () => {
             />
             <input
               type="password"
-              value={pass}
+              value={password}
               onChange={(e) => setPass(e.target.value)}
               placeholder="password"
             />
