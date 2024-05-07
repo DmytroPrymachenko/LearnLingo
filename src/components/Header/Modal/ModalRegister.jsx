@@ -1,5 +1,9 @@
 import { useDispatch } from "react-redux";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
 import { setUser } from "../../../store/slices/userSlice";
 import { useState } from "react";
 
@@ -15,16 +19,23 @@ const ModalRegister = () => {
     e.preventDefault();
     const auth = getAuth();
     console.log(auth);
-    createUserWithEmailAndPassword(auth, email, password)
+    createUserWithEmailAndPassword(auth, email, password, name)
       .then(({ user }) => {
-        console.log(user);
-        dispatch(
-          setUser({
-            email: user.email,
-            id: user.uid,
-            token: user.accessToken,
-          })
-        );
+        updateProfile(auth.currentUser, {
+          displayName: name,
+        }).then(() => {
+          dispatch(
+            setUser({
+              user: {
+                email: user.email,
+                name: user.displayName,
+                id: user.uid,
+              },
+
+              token: user.accessToken,
+            })
+          );
+        });
       })
       .catch(console.error);
   };
