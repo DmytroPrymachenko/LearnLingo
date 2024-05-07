@@ -1,35 +1,26 @@
-import { Route, Routes, Navigate, useLocation } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import Layout from "../components/Layout/Layout";
 import Home from "../pages/Home/Home";
 import Teachers from "../pages/Teachers/Teachers";
 import Favorites from "../pages/Favorites/Favorites";
-import { useDispatch, useSelector } from "react-redux";
-import { selectUser } from "hooks/use-auth";
-import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { selectUser } from "../store/selected";
 
 function App() {
-  const location = useLocation();
-  const dispatch = useDispatch();
   const user = useSelector(selectUser);
-
-  useEffect(() => {
-    if (!user && location.pathname !== "/") {
-      dispatch();
-    }
-  }, [dispatch, user, location.pathname]);
+  console.log(user);
 
   return (
     <>
       <Routes>
         <Route element={<Layout />}>
-          {user ? (
-            <>
-              <Route path="/teachers" element={<Teachers />} />
-              <Route path="/favorites" element={<Favorites />} />
-            </>
-          ) : (
+          <>
+            <Route path="/teachers" element={<Teachers />} />
+
             <Route path="/" element={<Home />} />
-          )}
+          </>
+
+          <Route path="/favorites" element={<Favorites />} />
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

@@ -18,8 +18,12 @@ const ModalLogin = () => {
         console.log(user);
         dispatch(
           setUser({
-            email: user.email,
-            id: user.uid,
+            user: {
+              email: user.email,
+              name: user.displayName,
+              id: user.uid,
+            },
+
             token: user.accessToken,
           })
         );
