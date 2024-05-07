@@ -1,6 +1,5 @@
 import { TeachersListDiv, TeachersListUl } from "./TeachersList.Styles";
 
-import { useState } from "react";
 import { nanoid } from "nanoid";
 import TeachersItem from "../TeachersItem/TeachersItem";
 

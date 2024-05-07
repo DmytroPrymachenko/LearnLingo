@@ -11,31 +11,10 @@ import {
 import TeachersListImageActive from "../../images/svg/TeachersListImageActive";
 import LessonsOnlineSVG from "../../images/svg/LessonsOnlineSVG";
 import StarSVG from "../../images/svg/StarSVG";
-import { useState } from "react";
+
 const favArray = JSON.parse(localStorage.getItem("favorites")) ?? [];
 
 const TeachersItem = ({ item }) => {
-  // const [teachersFavorites, setTeachersFavorites] = useState(
-  //   JSON.parse(localStorage.getItem("teachersFavorites")) || []
-  // );
-
-  // const handleToggleFavorite = (teacher) => {
-  //   const updatedFavorites = [...teachersFavorites];
-  //   const index = updatedFavorites.indexOf(teacher.id);
-  //   console.log(index);
-  //   if (index !== -1) {
-  //     updatedFavorites.splice(index, 1);
-  //   } else {
-  //     updatedFavorites.push(teacher);
-  //   }
-
-  //   console.log(updatedFavorites);
-  //   setTeachersFavorites(updatedFavorites);
-
-  //   const updatedFavoritesJSON = JSON.stringify(updatedFavorites);
-  //   localStorage.setItem("teachersFavorites", updatedFavoritesJSON);
-  // };
-
   function handleToggleFavorite({ id }) {
     if (JSON.parse(localStorage.getItem("favorites"))?.includes(id)) {
       const index = favArray.indexOf(id);
