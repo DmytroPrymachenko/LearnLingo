@@ -15,12 +15,10 @@ import { store } from "./store/index.js";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter basename="/learn-lingo/">
     <Provider store={store}>
-      <React.StrictMode>
-        <I18nextProvider i18n={i18n}>
-          <App />
-          <ToastContainer autoClose={1500} />
-        </I18nextProvider>
-      </React.StrictMode>
+      <I18nextProvider i18n={i18n}>
+        <App />
+        <ToastContainer autoClose={1500} />
+      </I18nextProvider>
     </Provider>
   </BrowserRouter>
 );

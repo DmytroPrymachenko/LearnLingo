@@ -24,10 +24,8 @@ const Teachers = () => {
   // console.log(teachersData);
 
   useEffect(() => {
-    if (teachersFilter === null) {
-      setFilteredList(teachersData);
-    } else {
-      setFilteredList(teachersFilter);
+    if (teachersData) {
+      setFilteredList(teachersFilter || teachersData);
     }
   }, [teachersFilter, teachersData]);
 
@@ -37,7 +35,7 @@ const Teachers = () => {
         data={teachersData}
         setTeachersFilter={setTeachersFilter}
       />
-      <TeachersList data={filteredList} />
+      <TeachersList dataList={filteredList} />
     </section>
   );
 };

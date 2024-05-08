@@ -2,18 +2,6 @@ import Select from "react-select";
 import { TeachersFilterDiv, TeachersFilterSpan } from "./TeachersFilter.Styles";
 import { useEffect, useState } from "react";
 
-const optionsLevel = [
-  { value: "A1 Beginner", label: "A1 Beginner" },
-  { value: "A2 Elementary", label: "A2 Elementary" },
-  { value: "B1 Intermediate", label: "B1 Intermediate" },
-  { value: "B2 Upper-Intermediate", label: "B2 Upper-Intermediate" },
-];
-const Price = [
-  { value: "30", label: "30" },
-  { value: "40", label: "40" },
-  { value: "50", label: "50" },
-];
-
 const customComponents = {
   padding: "0",
 
@@ -71,7 +59,7 @@ const TeachersFilter = ({ data, setTeachersFilter }) => {
     }
 
     setSelectedData(filteredData);
-  }, [data, selectedLanguage, selectedLevel, selectedPrice, selectedData]);
+  }, [data, selectedLanguage, selectedLevel, selectedPrice]);
 
   const allLanguages = selectedData
     ? selectedData.reduce((acc, teacher) => {
