@@ -138,21 +138,19 @@ const TeachersFilter = ({ data, setTeachersFilter }) => {
 
     if (selectedValue === "All") {
       setSelectedLanguage(null);
+      setTeachersFilter(selectedData);
     } else {
       setSelectedLanguage(selectedValue);
+      const filteredTeachers = selectedData.filter((teacher) =>
+        teacher.languages.includes(selectedValue)
+      );
+
+      console.log(filteredTeachers);
+
+      setTeachersFilter(filteredTeachers);
     }
-
-    const filteredTeachers =
-      selectedValue === "All"
-        ? selectedData
-        : selectedData.filter((teacher) =>
-            teacher.languages.includes(selectedValue)
-          );
-
-    console.log(filteredTeachers);
-
-    setTeachersFilter(filteredTeachers);
   };
+
   console.log();
   const handLevelChange = (selectedOption) => {
     const selectedValue = selectedOption ? selectedOption.value : null;
