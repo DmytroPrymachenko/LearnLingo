@@ -1,6 +1,6 @@
 import Select from "react-select";
 import { TeachersFilterDiv, TeachersFilterSpan } from "./TeachersFilter.Styles";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const optionsLevel = [
   { value: "A1 Beginner", label: "A1 Beginner" },
@@ -43,9 +43,38 @@ const TeachersFilter = ({ data, setTeachersFilter }) => {
   // const [teachersFilter, setTeachersFilter] = useState(null);
   const [selectedData, setSelectedData] = useState(null);
   const [selectedLanguage, setSelectedLanguage] = useState(null);
+  const [selectedPrice, setSelectedPrice] = useState(null);
+  const [selectedLevel, setSelectedLevel] = useState(null);
 
-  const allLanguages = data
-    ? data.reduce((acc, teacher) => {
+  useEffect(() => {
+    let filteredData = data;
+
+    // Фільтрація за мовою
+    if (selectedLanguage) {
+      filteredData = filteredData.filter((teacher) =>
+        teacher.languages.includes(selectedLanguage)
+      );
+    }
+
+    // Фільтрація за левелом
+    if (selectedLevel) {
+      filteredData = filteredData.filter((teacher) =>
+        teacher.levels.includes(selectedLevel)
+      );
+    }
+
+    // Фільтрація за ціною
+    if (selectedPrice) {
+      filteredData = filteredData.filter(
+        (teacher) => teacher.price_per_hour === selectedPrice
+      );
+    }
+
+    setSelectedData(filteredData);
+  }, [data, selectedLanguage, selectedLevel, selectedPrice]);
+
+  const allLanguages = selectedData
+    ? selectedData.reduce((acc, teacher) => {
         teacher.languages.forEach((language) => {
           if (!acc.includes(language)) {
             acc.push(language);
@@ -54,27 +83,85 @@ const TeachersFilter = ({ data, setTeachersFilter }) => {
         return acc;
       }, [])
     : [];
-  console.log(allLanguages);
+  // console.log(allLanguages);
+
+  const allPrices = selectedData
+    ? selectedData.reduce((acc, teacher) => {
+        if (!acc.includes(teacher.price_per_hour)) {
+          acc.push(teacher.price_per_hour);
+        }
+        return acc;
+      }, [])
+    : [];
+
+  const allLevel = selectedData
+    ? selectedData.reduce((acc, teacher) => {
+        teacher.levels.forEach((levels) => {
+          if (!acc.includes(levels)) {
+            acc.push(levels);
+          }
+        });
+        return acc;
+      }, [])
+    : [];
+  console.log(allLevel);
 
   const optionsLanguages = allLanguages.map((language) => ({
     value: language,
     label: language,
   }));
 
+  const optionsPrices = allPrices.map((price) => ({
+    value: price,
+    label: `${price}$`,
+  }));
+
+  const optionsLevel = allLevel.map((levels) => ({
+    value: levels,
+    label: levels,
+  }));
+
   const handleLanguageChange = (selectedOption) => {
     setSelectedLanguage(selectedOption ? selectedOption.value : null);
 
     if (selectedOption) {
-      const filteredTeachers = data.filter((teacher) =>
+      const filteredTeachers = selectedData.filter((teacher) =>
         teacher.languages.includes(selectedOption.value)
       );
       setTeachersFilter(filteredTeachers);
     } else {
-      setTeachersFilter(data);
+      setTeachersFilter(selectedData);
     }
   };
 
+  const handLevelChange = (selectedOption) => {
+    setSelectedLevel(selectedOption ? selectedOption.value : null);
+
+    if (selectedOption) {
+      const filteredTeachers = selectedData.filter((teacher) =>
+        teacher.levels.includes(selectedOption.value)
+      );
+      setTeachersFilter(filteredTeachers);
+    } else {
+      setTeachersFilter(selectedData);
+    }
+  };
   console.log(data);
+
+  const handlePriceChange = (selectedOption) => {
+    setSelectedPrice(selectedOption ? selectedOption.value : null);
+
+    if (selectedOption) {
+      const filteredTeachers = selectedData.filter(
+        (teacher) => teacher.price_per_hour === selectedOption.value
+      );
+      setTeachersFilter(filteredTeachers);
+    } else {
+      setTeachersFilter(selectedData);
+    }
+  };
+
+  // console.log(data);
   return (
     <>
       <>
@@ -95,11 +182,28 @@ const TeachersFilter = ({ data, setTeachersFilter }) => {
             </div>
             <div>
               <TeachersFilterSpan>Level of knowledge</TeachersFilterSpan>
-              <Select options={optionsLevel} styles={customComponents} />
+              <Select
+                options={optionsLevel}
+                styles={customComponents}
+                onChange={handLevelChange}
+                value={
+                  selectedLevel
+                    ? { value: selectedLevel, label: selectedLevel }
+                    : null
+                }
+              />
             </div>
             <div>
               <TeachersFilterSpan>Price</TeachersFilterSpan>
-              <Select options={Price} styles={customComponents} />
+              <Select
+                options={optionsPrices}
+                onChange={handlePriceChange}
+                value={
+                  selectedPrice
+                    ? { value: selectedPrice, label: `${selectedPrice}$` }
+                    : null
+                }
+              />
             </div>
           </TeachersFilterDiv>
         </section>
