@@ -106,58 +106,82 @@ const TeachersFilter = ({ data, setTeachersFilter }) => {
     : [];
   console.log(allLevel);
 
-  const optionsLanguages = allLanguages.map((language) => ({
-    value: language,
-    label: language,
-  }));
+  const optionsLanguages = [
+    { value: "All", label: "All" },
+    ...allLanguages.map((language) => ({
+      value: language,
+      label: language,
+    })),
+  ];
 
-  const optionsPrices = allPrices.map((price) => ({
-    value: price,
-    label: `${price}$`,
-  }));
+  const optionsPrices = [
+    { value: "All", label: "All" },
+    ...allPrices.map((price) => ({
+      value: price,
+      label: price === "All" ? "All" : `${price}$`,
+    })),
+  ];
 
-  const optionsLevel = allLevel.map((levels) => ({
-    value: levels,
-    label: levels,
-  }));
+  const optionsLevel = [
+    { value: "All", label: "All" },
+    ...allLevel.map((level) => ({
+      value: level,
+      label: level,
+    })),
+  ];
 
   const handleLanguageChange = (selectedOption) => {
-    setSelectedLanguage(selectedOption ? selectedOption.value : null);
+    const selectedValue = selectedOption ? selectedOption.value : null;
 
-    if (selectedOption) {
-      const filteredTeachers = selectedData.filter((teacher) =>
-        teacher.languages.includes(selectedOption.value)
-      );
-      setTeachersFilter(filteredTeachers);
+    console.log(selectedOption);
+    console.log(selectedValue);
+
+    if (selectedValue === "All") {
+      setSelectedLanguage(null);
     } else {
-      setTeachersFilter(selectedData);
+      setSelectedLanguage(selectedValue);
     }
+
+    const filteredTeachers =
+      selectedValue === "All"
+        ? selectedData
+        : selectedData.filter((teacher) =>
+            teacher.languages.includes(selectedValue)
+          );
+
+    console.log(filteredTeachers);
+
+    setTeachersFilter(filteredTeachers);
   };
-
+  console.log();
   const handLevelChange = (selectedOption) => {
-    setSelectedLevel(selectedOption ? selectedOption.value : null);
+    const selectedValue = selectedOption ? selectedOption.value : null;
 
-    if (selectedOption) {
+    if (selectedValue === "All") {
+      setSelectedLevel(null);
+      setTeachersFilter(selectedData);
+    } else {
+      setSelectedLevel(selectedValue);
       const filteredTeachers = selectedData.filter((teacher) =>
-        teacher.levels.includes(selectedOption.value)
+        teacher.levels.includes(selectedValue)
       );
       setTeachersFilter(filteredTeachers);
-    } else {
-      setTeachersFilter(selectedData);
     }
   };
   console.log(data);
 
   const handlePriceChange = (selectedOption) => {
-    setSelectedPrice(selectedOption ? selectedOption.value : null);
+    const selectedValue = selectedOption ? selectedOption.value : null;
 
-    if (selectedOption) {
+    if (selectedValue === "All") {
+      setSelectedPrice(null);
+      setTeachersFilter(selectedData);
+    } else {
+      setSelectedPrice(selectedValue);
       const filteredTeachers = selectedData.filter(
-        (teacher) => teacher.price_per_hour === selectedOption.value
+        (teacher) => teacher.price_per_hour === selectedValue
       );
       setTeachersFilter(filteredTeachers);
-    } else {
-      setTeachersFilter(selectedData);
     }
   };
 
