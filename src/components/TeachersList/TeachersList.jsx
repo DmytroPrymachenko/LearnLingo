@@ -4,7 +4,7 @@ import { nanoid } from "nanoid";
 import TeachersItem from "../TeachersItem/TeachersItem";
 
 const TeachersList = ({ data }) => {
-  console.log(data);
+  // console.log(data);
 
   return (
     <>

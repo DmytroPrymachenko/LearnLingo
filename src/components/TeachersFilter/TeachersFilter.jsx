@@ -1,12 +1,7 @@
-import React from "react";
 import Select from "react-select";
 import { TeachersFilterDiv, TeachersFilterSpan } from "./TeachersFilter.Styles";
+import { useState } from "react";
 
-const optionsLanguages = [
-  { value: "French", label: "French" },
-  { value: "German", label: "German" },
-  { value: "Mandarin Chinese", label: "Mandarin Chinese" },
-];
 const optionsLevel = [
   { value: "A1 Beginner", label: "A1 Beginner" },
   { value: "A2 Elementary", label: "A2 Elementary" },
@@ -44,7 +39,42 @@ const customComponents = {
   }),
 };
 
-const TeachersFilter = () => {
+const TeachersFilter = ({ data, setTeachersFilter }) => {
+  // const [teachersFilter, setTeachersFilter] = useState(null);
+  const [selectedData, setSelectedData] = useState(null);
+  const [selectedLanguage, setSelectedLanguage] = useState(null);
+
+  const allLanguages = data
+    ? data.reduce((acc, teacher) => {
+        teacher.languages.forEach((language) => {
+          if (!acc.includes(language)) {
+            acc.push(language);
+          }
+        });
+        return acc;
+      }, [])
+    : [];
+  console.log(allLanguages);
+
+  const optionsLanguages = allLanguages.map((language) => ({
+    value: language,
+    label: language,
+  }));
+
+  const handleLanguageChange = (selectedOption) => {
+    setSelectedLanguage(selectedOption ? selectedOption.value : null);
+
+    if (selectedOption) {
+      const filteredTeachers = data.filter((teacher) =>
+        teacher.languages.includes(selectedOption.value)
+      );
+      setTeachersFilter(filteredTeachers);
+    } else {
+      setTeachersFilter(data);
+    }
+  };
+
+  console.log(data);
   return (
     <>
       <>
@@ -55,7 +85,12 @@ const TeachersFilter = () => {
               <Select
                 options={optionsLanguages}
                 styles={customComponents}
-                defaultInputValue="French"
+                onChange={handleLanguageChange}
+                value={
+                  selectedLanguage
+                    ? { value: selectedLanguage, label: selectedLanguage }
+                    : null
+                }
               />
             </div>
             <div>

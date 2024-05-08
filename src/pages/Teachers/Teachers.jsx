@@ -7,7 +7,10 @@ import { query } from "firebase/database";
 
 const Teachers = () => {
   const [teachersData, setTeachersData] = useState(null);
+  const [teachersFilter, setTeachersFilter] = useState(null);
+  const [filteredList, setFilteredList] = useState(null);
 
+  console.log(teachersFilter);
   const db = getDatabase();
 
   console.log(db);
@@ -18,11 +21,23 @@ const Teachers = () => {
       setTeachersData(data);
     });
   }, [db]);
-  console.log(teachersData);
+  // console.log(teachersData);
+
+  useEffect(() => {
+    if (teachersFilter === null) {
+      setFilteredList(teachersData);
+    } else {
+      setFilteredList(teachersFilter);
+    }
+  }, [teachersFilter, teachersData]);
+
   return (
     <section>
-      <TeachersFilter />
-      <TeachersList data={teachersData} />
+      <TeachersFilter
+        data={teachersData}
+        setTeachersFilter={setTeachersFilter}
+      />
+      <TeachersList data={filteredList} />
     </section>
   );
 };
