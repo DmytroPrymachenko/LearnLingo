@@ -71,7 +71,7 @@ const TeachersFilter = ({ data, setTeachersFilter }) => {
     }
 
     setSelectedData(filteredData);
-  }, [data, selectedLanguage, selectedLevel, selectedPrice]);
+  }, [data, selectedLanguage, selectedLevel, selectedPrice, selectedData]);
 
   const allLanguages = selectedData
     ? selectedData.reduce((acc, teacher) => {
@@ -138,6 +138,7 @@ const TeachersFilter = ({ data, setTeachersFilter }) => {
 
     if (selectedValue === "All") {
       setSelectedLanguage(null);
+
       setTeachersFilter(selectedData);
     } else {
       setSelectedLanguage(selectedValue);
@@ -200,6 +201,7 @@ const TeachersFilter = ({ data, setTeachersFilter }) => {
                     ? { value: selectedLanguage, label: selectedLanguage }
                     : null
                 }
+                placeholder={"All"}
               />
             </div>
             <div>
@@ -213,6 +215,7 @@ const TeachersFilter = ({ data, setTeachersFilter }) => {
                     ? { value: selectedLevel, label: selectedLevel }
                     : null
                 }
+                placeholder={"All"}
               />
             </div>
             <div>
@@ -225,6 +228,7 @@ const TeachersFilter = ({ data, setTeachersFilter }) => {
                     ? { value: selectedPrice, label: `${selectedPrice}$` }
                     : null
                 }
+                placeholder={"All"}
               />
             </div>
           </TeachersFilterDiv>
