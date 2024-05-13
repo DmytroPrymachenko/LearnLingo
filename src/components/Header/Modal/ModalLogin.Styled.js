@@ -18,10 +18,10 @@ export const ModalLoginFormDiv = styled.div`
 
 export const ModalLoginForm = styled.form`
   position: fixed;
-  top: 50%;
-  left: 50%;
+  top: 35%;
+  left: 35%;
   display: flex;
-  position: relative;
+  /* position: relative; */
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
