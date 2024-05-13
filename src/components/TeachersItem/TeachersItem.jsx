@@ -45,11 +45,11 @@ const TeachersItem = ({ item }) => {
                   <span>Lessons online</span>
                 </TeachersListStatusLi>
                 <TeachersListStatusLi>
-                  <span>Lessons done: 1098</span>
+                  <span>Lessons done: {item.lessons_done}</span>
                 </TeachersListStatusLi>
                 <TeachersListStatusLi>
                   <StarSVG />
-                  <span>Rating: 4.8</span>
+                  <span>Rating: {item.rating}</span>
                 </TeachersListStatusLi>
                 <TeachersListStatusLi>
                   <span>Price / 1 hour:</span>
