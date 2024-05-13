@@ -100,8 +100,9 @@ const TeachersItem = ({ item }) => {
                 <TeachersItemParameters>Speaks:</TeachersItemParameters>
                 <TeachersItemlanguagesParamsUl>
                   {item.languages.map((language, index) => (
-                    <li key={index}>{language}</li>
+                    <li key={index}>{"  " + language} </li>
                   ))}
+                  {/* <span>{item.languages.map((el) => el)}</span> */}
                 </TeachersItemlanguagesParamsUl>
               </TeachersItemContentParamsLi>
               <TeachersItemContentParamsLi>

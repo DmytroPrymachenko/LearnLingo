@@ -151,10 +151,10 @@ export const TeachersItemlanguagesParamsUl = styled.ul`
   align-items: center;
 
   text-decoration-skip-ink: none;
+  text-decoration: underline;
   color: #121417;
   > li:not(:last-child)::after {
     content: ",";
-    padding-right: 5px;
   }
   > li {
     text-decoration: underline;
