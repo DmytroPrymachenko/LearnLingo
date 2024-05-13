@@ -1,5 +1,7 @@
 import HeartLike from "../../images/svg/HeartLike";
 import {
+  ButtonTeachersFavorite,
+  TeachersItemParameters,
   TeachersListImageDiv,
   TeachersListImageTeacher,
   TeachersListLi,
@@ -11,18 +13,23 @@ import {
 import TeachersListImageActive from "../../images/svg/TeachersListImageActive";
 import LessonsOnlineSVG from "../../images/svg/LessonsOnlineSVG";
 import StarSVG from "../../images/svg/StarSVG";
-
-const favArray = JSON.parse(localStorage.getItem("favorites")) ?? [];
+import HeartLikeActive from "../../images/svg/HeartLikeActive";
+import { useState } from "react";
 
 const TeachersItem = ({ item }) => {
+  const [favArray, setFavArray] = useState(
+    JSON.parse(localStorage.getItem("favorites")) ?? []
+  );
+
   function handleToggleFavorite({ id }) {
-    if (JSON.parse(localStorage.getItem("favorites"))?.includes(id)) {
-      const index = favArray.indexOf(id);
-      favArray.splice(index, 1);
-      localStorage.setItem("favorites", JSON.stringify(favArray));
+    if (favArray.includes(id)) {
+      const updatedFavArray = favArray.filter((favId) => favId !== id);
+      setFavArray(updatedFavArray);
+      localStorage.setItem("favorites", JSON.stringify(updatedFavArray));
     } else {
-      favArray.push(id);
-      localStorage.setItem("favorites", JSON.stringify(favArray));
+      const updatedFavArray = [...favArray, id];
+      setFavArray(updatedFavArray);
+      localStorage.setItem("favorites", JSON.stringify(updatedFavArray));
     }
   }
 
@@ -37,7 +44,10 @@ const TeachersItem = ({ item }) => {
         </div>
         <div>
           <TeachersListStatusDiv>
-            <span>Languages</span>
+            <div>
+              <TeachersItemParameters>Languages</TeachersItemParameters>
+              <h3>{item.name}</h3>
+            </div>
             <TeachersListStatusDivInternal>
               <TeachersListStatusUl>
                 <TeachersListStatusLi>
@@ -53,42 +63,48 @@ const TeachersItem = ({ item }) => {
                 </TeachersListStatusLi>
                 <TeachersListStatusLi>
                   <span>Price / 1 hour:</span>
-                  <span>30$</span>
+                  <span>{item.price_per_hour}$</span>
                 </TeachersListStatusLi>
               </TeachersListStatusUl>
-              <button onClick={() => handleToggleFavorite(item)}>
-                {favArray.some((favTeacher) => favTeacher.id === item.id)
-                  ? "є в улюблених"
-                  : "нема в улюблених"}
-                <HeartLike />
-              </button>
+              <ButtonTeachersFavorite
+                onClick={() => handleToggleFavorite(item)}
+              >
+                {favArray.some((favTeacher) => favTeacher === item.id) ? (
+                  <HeartLikeActive />
+                ) : (
+                  <HeartLike />
+                )}
+              </ButtonTeachersFavorite>
             </TeachersListStatusDivInternal>
           </TeachersListStatusDiv>
-          <div>
-            <h3>{item.name}</h3>
-          </div>
+
           <div>
             <ul>
               <li>
-                <span>Speaks:</span>
-                <p></p>
+                <TeachersItemParameters>Speaks:</TeachersItemParameters>
+                <ul>
+                  {item.languages.map((language, index) => (
+                    <li key={index}>{language}</li>
+                  ))}
+                </ul>
               </li>
               <li>
-                <span>Lesson Info:</span>
-                <p></p>
+                <TeachersItemParameters>Lesson Info:</TeachersItemParameters>
+                <p>{item.lesson_info}</p>
               </li>
               <li>
-                <span>Conditions:</span>
-                <p></p>
+                <TeachersItemParameters>Conditions:</TeachersItemParameters>
+                <p>{item.conditions}</p>
               </li>
             </ul>
             <button>Read more</button>
           </div>
           <div>
-            <span>#A1 Beginner</span>
-            <span>#A2 Elementary</span>
-            <span>#B1 Intermediate</span>
-            <span>#B2 Upper-Intermediate</span>
+            <ul>
+              {item.levels.map((language, index) => (
+                <li key={index}>{language}</li>
+              ))}
+            </ul>
           </div>
         </div>
       </TeachersListLi>
