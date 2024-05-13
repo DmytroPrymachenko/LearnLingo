@@ -4,16 +4,15 @@ import TeachersList from "../../components/TeachersList/TeachersList";
 
 import { getDatabase, ref, onValue } from "firebase/database";
 import { query } from "firebase/database";
+import { SectionTeachers } from "./Teachers.Styles";
 
 const Teachers = () => {
   const [teachersData, setTeachersData] = useState(null);
   const [teachersFilter, setTeachersFilter] = useState(null);
   const [filteredList, setFilteredList] = useState(null);
 
-  console.log(teachersFilter);
   const db = getDatabase();
 
-  console.log(db);
   useEffect(() => {
     const countRef = query(ref(db, "teachers"));
     onValue(countRef, (snapshot) => {
@@ -21,7 +20,6 @@ const Teachers = () => {
       setTeachersData(data);
     });
   }, [db]);
-  // console.log(teachersData);
 
   useEffect(() => {
     if (teachersData) {
@@ -30,13 +28,13 @@ const Teachers = () => {
   }, [teachersFilter, teachersData]);
 
   return (
-    <section>
+    <SectionTeachers>
       <TeachersFilter
         data={teachersData}
         setTeachersFilter={setTeachersFilter}
       />
       <TeachersList dataList={filteredList} />
-    </section>
+    </SectionTeachers>
   );
 };
 

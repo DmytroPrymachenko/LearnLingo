@@ -71,7 +71,6 @@ const TeachersFilter = ({ data, setTeachersFilter }) => {
         return acc;
       }, [])
     : [];
-  // console.log(allLanguages);
 
   const allPrices = selectedData
     ? selectedData.reduce((acc, teacher) => {
@@ -92,7 +91,6 @@ const TeachersFilter = ({ data, setTeachersFilter }) => {
         return acc;
       }, [])
     : [];
-  console.log(allLevel);
 
   const optionsLanguages = [
     { value: "All", label: "All" },
@@ -121,9 +119,6 @@ const TeachersFilter = ({ data, setTeachersFilter }) => {
   const handleLanguageChange = (selectedOption) => {
     const selectedValue = selectedOption ? selectedOption.value : null;
 
-    console.log(selectedOption);
-    console.log(selectedValue);
-
     if (selectedValue === "All") {
       setSelectedLanguage(null);
 
@@ -134,13 +129,10 @@ const TeachersFilter = ({ data, setTeachersFilter }) => {
         teacher.languages.includes(selectedValue)
       );
 
-      console.log(filteredTeachers);
-
       setTeachersFilter(filteredTeachers);
     }
   };
 
-  console.log();
   const handLevelChange = (selectedOption) => {
     const selectedValue = selectedOption ? selectedOption.value : null;
 
@@ -155,7 +147,6 @@ const TeachersFilter = ({ data, setTeachersFilter }) => {
       setTeachersFilter(filteredTeachers);
     }
   };
-  console.log(data);
 
   const handlePriceChange = (selectedOption) => {
     const selectedValue = selectedOption ? selectedOption.value : null;
@@ -172,7 +163,6 @@ const TeachersFilter = ({ data, setTeachersFilter }) => {
     }
   };
 
-  // console.log(data);
   return (
     <>
       <>

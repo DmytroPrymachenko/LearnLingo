@@ -6,6 +6,8 @@ export const TeachersListDiv = styled.div`
   align-content: center;
   justify-content: center;
   align-items: center;
+  padding-top: 32px;
+  padding-bottom: 96px;
 `;
 export const TeachersListUl = styled.ul`
   display: flex;
@@ -20,6 +22,7 @@ export const TeachersListLi = styled.li`
   background: #fff;
   border-radius: 24px;
   padding: 24px;
+  gap: 48px;
 `;
 
 export const TeachersListImageTeacher = styled.img`
@@ -57,12 +60,28 @@ export const TeachersListStatusDivInternal = styled.div`
 export const TeachersListStatusUl = styled.ul`
   display: flex;
   flex-direction: row;
+  white-space: nowrap;
   > li:not(:last-child) {
     border-right: 1px solid rgba(18, 20, 23, 0.2);
     padding-right: 16px;
+    gap: 8px;
   }
   > li:not(:first-child) {
     padding-left: 16px;
+  }
+
+  > li {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    color: #121417;
+    display: flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  > li:last-child {
+    gap: 4px;
   }
 `;
 export const TeachersListStatusLi = styled.li`
@@ -81,6 +100,101 @@ export const ButtonTeachersFavorite = styled.button`
 export const TeachersItemParameters = styled.span`
   font-weight: 500;
   font-size: 16px;
-  line-height: 150%;
+  line-height: 1.5;
   color: #8a8a89;
+`;
+export const TeachersItemTitleDiv = styled.div`
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+`;
+export const TeachersItemNameSpan = styled.span`
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 100%;
+  color: #121417;
+  white-space: nowrap;
+`;
+export const TeachersItemContent = styled.div`
+  display: flex;
+  gap: 32px;
+  flex-direction: column;
+`;
+
+export const TeachersItemReadMore = styled.button`
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  color: #121417;
+  background-color: transparent;
+  border: none;
+`;
+
+export const TeachersItemContentParams = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+`;
+export const TeachersItemContentParamsLi = styled.li`
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  align-items: center;
+`;
+export const TeachersItemlanguagesParamsUl = styled.ul`
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+
+  text-decoration-skip-ink: none;
+  color: #121417;
+  > li:not(:last-child)::after {
+    content: ",";
+    padding-right: 5px;
+  }
+  > li {
+    text-decoration: underline;
+  }
+`;
+
+export const TeachersItemContentlevelsUl = styled.ul`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  > li:first-child {
+    border: none;
+    background: #f4c550;
+  }
+`;
+export const TeachersItemContentlevelsLi = styled.li`
+  justify-content: center;
+  border-radius: 35px;
+  padding: 8px 12px;
+  border: 1px solid rgba(18, 20, 23, 0.2);
+`;
+
+export const TeachersItemPriceSpan = styled.span`
+  color: #38cd3e;
+
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+`;
+
+export const TeachersListLoadMore = styled.button`
+  border-radius: 12px;
+  padding: 16px 48px;
+
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 156%;
+  color: #121417;
+  justify-content: center;
+  background: #f4c550;
+  border: none;
 `;

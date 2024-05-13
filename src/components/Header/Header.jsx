@@ -2,23 +2,23 @@ import { Link } from "react-router-dom";
 import IconHeader from "../../images/svg/IconHeader";
 import {
   Backdrop,
-  HeaderButtonLogin,
-  HeaderButtonRegistration,
-  HeaderDivAuthorization,
   HeaderDivLink,
   HeaderLink,
   HeaderSection,
-  HeaderSpanLogin,
 } from "./Header.Styled";
-import IconHeaderLogin from "../../images/svg/IconHeaderLogin";
+
 import { useState } from "react";
 import ModalRegister from "./Modal/ModalRegister";
 import ModalLogin from "./Modal/ModalLogin";
+import HeaderNeedAuthorization from "./HeaderNeedAuthorization/HeaderNeedAuthorization";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../store/selected";
+import HeaderClientIsAuthorized from "./HeaderClientIsAuthorized/HeaderClientIsAuthorized";
 
 const Header = () => {
   const [isModalLogin, setIsModalLogin] = useState(false);
   const [isModalRegister, setIsModalRegister] = useState(false);
-
+  const user = useSelector(selectUser);
   const openModalLogin = () => {
     setIsModalLogin((prevState) => !prevState);
   };
@@ -26,11 +26,15 @@ const Header = () => {
     setIsModalRegister((prevState) => !prevState);
   };
 
+  const closeModal = () => {
+    setIsModalLogin(false);
+  };
+
   return (
     <>
       {isModalLogin && (
         <>
-          <Backdrop />
+          <Backdrop onClick={closeModal} />
           <ModalLogin />
         </>
       )}
@@ -67,15 +71,14 @@ const Header = () => {
             Teachers
           </HeaderLink>
         </HeaderDivLink>
-        <HeaderDivAuthorization>
-          <HeaderButtonLogin onClick={openModalLogin}>
-            <IconHeaderLogin />
-            <HeaderSpanLogin>Log in</HeaderSpanLogin>
-          </HeaderButtonLogin>
-          <HeaderButtonRegistration onClick={openModalRegister}>
-            Registration
-          </HeaderButtonRegistration>
-        </HeaderDivAuthorization>
+        {user ? (
+          <HeaderClientIsAuthorized />
+        ) : (
+          <HeaderNeedAuthorization
+            openModalLogin={openModalLogin}
+            openModalRegister={openModalRegister}
+          />
+        )}
       </HeaderSection>
     </>
   );

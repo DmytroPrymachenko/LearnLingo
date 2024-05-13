@@ -1,22 +1,26 @@
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes, Navigate, useLocation } from "react-router-dom";
 import Layout from "../components/Layout/Layout";
 import Home from "../pages/Home/Home";
 import Teachers from "../pages/Teachers/Teachers";
 import Favorites from "../pages/Favorites/Favorites";
 import { useSelector } from "react-redux";
 import { selectUser } from "../store/selected";
+import { GlobalStyles } from "./App.Styled";
 
 function App() {
+  const location = useLocation();
   const user = useSelector(selectUser);
   console.log(user);
 
+  const isHomePage = location.pathname === "/";
+
   return (
     <>
+      <GlobalStyles isHomePage={isHomePage} />
       <Routes>
         <Route element={<Layout />}>
           <>
             <Route path="/teachers" element={<Teachers />} />
-
             <Route path="/" element={<Home />} />
           </>
 

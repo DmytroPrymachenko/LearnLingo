@@ -3,6 +3,11 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 import { setUser } from "../../../store/slices/userSlice";
 import { useState } from "react";
+import {
+  ModalDivLogin,
+  ModalLoginForm,
+  ModalLoginFormDiv,
+} from "./ModalLogin.Styled";
 
 const ModalLogin = () => {
   const [email, setEmail] = useState("");
@@ -15,7 +20,6 @@ const ModalLogin = () => {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
-        console.log(user);
         dispatch(
           setUser({
             user: {
@@ -33,9 +37,14 @@ const ModalLogin = () => {
 
   return (
     <>
-      <div>
-        <div>
-          <form>
+      <ModalDivLogin>
+        <ModalLoginFormDiv>
+          <ModalLoginForm>
+            <h1>Log In</h1>
+            <span>
+              Welcome back! Please enter your credentials to access your account
+              and continue your search for an teacher.
+            </span>
             <input
               type="email"
               value={email}
@@ -49,9 +58,9 @@ const ModalLogin = () => {
               placeholder="password"
             />
             <button onClick={handleLogin}>Zaloginetsy</button>
-          </form>
-        </div>
-      </div>
+          </ModalLoginForm>
+        </ModalLoginFormDiv>
+      </ModalDivLogin>
     </>
   );
 };

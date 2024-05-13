@@ -1,7 +1,17 @@
 import HeartLike from "../../images/svg/HeartLike";
 import {
   ButtonTeachersFavorite,
+  TeachersItemContent,
+  TeachersItemContentParams,
+  TeachersItemContentParamsLi,
+  TeachersItemContentlevelsLi,
+  TeachersItemContentlevelsUl,
+  TeachersItemNameSpan,
   TeachersItemParameters,
+  TeachersItemPriceSpan,
+  TeachersItemReadMore,
+  TeachersItemTitleDiv,
+  TeachersItemlanguagesParamsUl,
   TeachersListImageDiv,
   TeachersListImageTeacher,
   TeachersListLi,
@@ -42,12 +52,15 @@ const TeachersItem = ({ item }) => {
             <TeachersListImageActive />
           </TeachersListImageDiv>
         </div>
-        <div>
+        <TeachersItemContent>
           <TeachersListStatusDiv>
-            <div>
+            <TeachersItemTitleDiv>
               <TeachersItemParameters>Languages</TeachersItemParameters>
-              <h3>{item.name}</h3>
-            </div>
+
+              <TeachersItemNameSpan>
+                {item.name} {item.surname}
+              </TeachersItemNameSpan>
+            </TeachersItemTitleDiv>
             <TeachersListStatusDivInternal>
               <TeachersListStatusUl>
                 <TeachersListStatusLi>
@@ -63,7 +76,10 @@ const TeachersItem = ({ item }) => {
                 </TeachersListStatusLi>
                 <TeachersListStatusLi>
                   <span>Price / 1 hour:</span>
-                  <span>{item.price_per_hour}$</span>
+
+                  <TeachersItemPriceSpan>
+                    {item.price_per_hour}$
+                  </TeachersItemPriceSpan>
                 </TeachersListStatusLi>
               </TeachersListStatusUl>
               <ButtonTeachersFavorite
@@ -78,35 +94,37 @@ const TeachersItem = ({ item }) => {
             </TeachersListStatusDivInternal>
           </TeachersListStatusDiv>
 
-          <div>
+          <TeachersItemContentParams>
             <ul>
-              <li>
+              <TeachersItemContentParamsLi>
                 <TeachersItemParameters>Speaks:</TeachersItemParameters>
-                <ul>
+                <TeachersItemlanguagesParamsUl>
                   {item.languages.map((language, index) => (
                     <li key={index}>{language}</li>
                   ))}
-                </ul>
-              </li>
-              <li>
+                </TeachersItemlanguagesParamsUl>
+              </TeachersItemContentParamsLi>
+              <TeachersItemContentParamsLi>
                 <TeachersItemParameters>Lesson Info:</TeachersItemParameters>
                 <p>{item.lesson_info}</p>
-              </li>
-              <li>
+              </TeachersItemContentParamsLi>
+              <TeachersItemContentParamsLi>
                 <TeachersItemParameters>Conditions:</TeachersItemParameters>
                 <p>{item.conditions}</p>
-              </li>
+              </TeachersItemContentParamsLi>
             </ul>
-            <button>Read more</button>
-          </div>
+            <TeachersItemReadMore>Read more</TeachersItemReadMore>
+          </TeachersItemContentParams>
           <div>
-            <ul>
+            <TeachersItemContentlevelsUl>
               {item.levels.map((language, index) => (
-                <li key={index}>{language}</li>
+                <TeachersItemContentlevelsLi key={index}>
+                  #{language}
+                </TeachersItemContentlevelsLi>
               ))}
-            </ul>
+            </TeachersItemContentlevelsUl>
           </div>
-        </div>
+        </TeachersItemContent>
       </TeachersListLi>
     </>
   );
