@@ -26,23 +26,44 @@ import StarSVG from "../../images/svg/StarSVG";
 import HeartLikeActive from "../../images/svg/HeartLikeActive";
 import { useState } from "react";
 
-const TeachersItem = ({ item }) => {
-  const [favArray, setFavArray] = useState(
-    JSON.parse(localStorage.getItem("favorites")) ?? []
-  );
+const favArray = JSON.parse(localStorage.getItem("favorites")) ?? [];
 
+const TeachersItem = ({ item }) => {
+  const [heart, setHeart] = useState(false);
+  // console.log(favArray);
   function handleToggleFavorite({ id }) {
-    if (favArray.includes(id)) {
-      const updatedFavArray = favArray.filter((favId) => favId !== id);
-      setFavArray(updatedFavArray);
-      localStorage.setItem("favorites", JSON.stringify(updatedFavArray));
+    if (JSON.parse(localStorage.getItem("favorites"))?.includes(id)) {
+      const index = favArray.indexOf(id);
+      favArray.splice(index, 1);
+      localStorage.setItem("favorites", JSON.stringify(favArray));
+      setHeart(!heart);
+      console.log("favArray1", favArray);
     } else {
-      const updatedFavArray = [...favArray, id];
-      setFavArray(updatedFavArray);
-      localStorage.setItem("favorites", JSON.stringify(updatedFavArray));
+      favArray.push(id);
+      localStorage.setItem("favorites", JSON.stringify(favArray));
+      setHeart(!heart);
     }
+
+    console.log("id", id);
   }
 
+  // function addToFav(id) {
+  //   if (JSON.parse(localStorage.getItem("favorites"))?.includes(id)) {
+  //     const index = favArray.indexOf(id);
+  //     favArray.splice(index, 1);
+  //     localStorage.setItem("favorites", JSON.stringify(favArray));
+  //     setHeart(!heart);
+  //   } else {
+  //     favArray.push(id);
+  //     localStorage.setItem("favorites", JSON.stringify(favArray));
+  //     setHeart(!heart);
+  //   }
+  // }
+  const checked = JSON.parse(localStorage.getItem("favorites"))?.includes(
+    item.id
+  )
+    ? true
+    : null;
   return (
     <>
       <TeachersListLi>
@@ -85,11 +106,7 @@ const TeachersItem = ({ item }) => {
               <ButtonTeachersFavorite
                 onClick={() => handleToggleFavorite(item)}
               >
-                {favArray.some((favTeacher) => favTeacher === item.id) ? (
-                  <HeartLikeActive />
-                ) : (
-                  <HeartLike />
-                )}
+                {checked ? <HeartLikeActive /> : <HeartLike />}
               </ButtonTeachersFavorite>
             </TeachersListStatusDivInternal>
           </TeachersListStatusDiv>

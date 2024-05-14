@@ -70,6 +70,15 @@ const Header = () => {
           >
             Teachers
           </HeaderLink>
+          {user && (
+            <HeaderLink
+              to="/favorites"
+              aria-label="Teachers"
+              style={{ textDecoration: "none" }}
+            >
+              Favorites
+            </HeaderLink>
+          )}
         </HeaderDivLink>
         {user ? (
           <HeaderClientIsAuthorized />

@@ -18,7 +18,7 @@ const ModalRegister = () => {
   const handleRegister = (e) => {
     e.preventDefault();
     const auth = getAuth();
-    console.log(auth);
+
     createUserWithEmailAndPassword(auth, email, password, name)
       .then(({ user }) => {
         updateProfile(auth.currentUser, {

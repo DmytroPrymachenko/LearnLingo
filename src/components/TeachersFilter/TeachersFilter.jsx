@@ -38,28 +38,28 @@ const TeachersFilter = ({ data, setTeachersFilter }) => {
     let filteredData = data;
 
     // Фільтрація за мовою
-    if (selectedLanguage) {
+    if (selectedLanguage || null) {
       filteredData = filteredData.filter((teacher) =>
         teacher.languages.includes(selectedLanguage)
       );
     }
 
     // Фільтрація за левелом
-    if (selectedLevel) {
+    if (selectedLevel || null) {
       filteredData = filteredData.filter((teacher) =>
         teacher.levels.includes(selectedLevel)
       );
     }
 
     // Фільтрація за ціною
-    if (selectedPrice) {
+    if (selectedPrice || null) {
       filteredData = filteredData.filter(
         (teacher) => teacher.price_per_hour === selectedPrice
       );
     }
 
     setSelectedData(filteredData);
-  }, [data, selectedLanguage, selectedLevel, selectedPrice]);
+  }, [data, selectedLanguage, selectedLevel, selectedPrice, setTeachersFilter]);
 
   const allLanguages = selectedData
     ? selectedData.reduce((acc, teacher) => {
@@ -117,12 +117,14 @@ const TeachersFilter = ({ data, setTeachersFilter }) => {
   ];
 
   const handleLanguageChange = (selectedOption) => {
-    const selectedValue = selectedOption ? selectedOption.value : null;
+    let selectedValue = selectedOption ? selectedOption.value : null;
 
     if (selectedValue === "All") {
       setSelectedLanguage(null);
+      setSelectedPrice(null);
+      setSelectedLevel(null);
 
-      setTeachersFilter(selectedData);
+      setTeachersFilter(data);
     } else {
       setSelectedLanguage(selectedValue);
       const filteredTeachers = selectedData.filter((teacher) =>
@@ -137,8 +139,10 @@ const TeachersFilter = ({ data, setTeachersFilter }) => {
     const selectedValue = selectedOption ? selectedOption.value : null;
 
     if (selectedValue === "All") {
+      setSelectedLanguage(null);
+      setSelectedPrice(null);
       setSelectedLevel(null);
-      setTeachersFilter(selectedData);
+      setTeachersFilter(data);
     } else {
       setSelectedLevel(selectedValue);
       const filteredTeachers = selectedData.filter((teacher) =>
@@ -152,8 +156,10 @@ const TeachersFilter = ({ data, setTeachersFilter }) => {
     const selectedValue = selectedOption ? selectedOption.value : null;
 
     if (selectedValue === "All") {
+      setSelectedLanguage(null);
       setSelectedPrice(null);
-      setTeachersFilter(selectedData);
+      setSelectedLevel(null);
+      setTeachersFilter(data);
     } else {
       setSelectedPrice(selectedValue);
       const filteredTeachers = selectedData.filter(
