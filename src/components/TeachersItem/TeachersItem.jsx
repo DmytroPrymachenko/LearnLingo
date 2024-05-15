@@ -25,12 +25,20 @@ import LessonsOnlineSVG from "../../images/svg/LessonsOnlineSVG";
 import StarSVG from "../../images/svg/StarSVG";
 import HeartLikeActive from "../../images/svg/HeartLikeActive";
 import { useState } from "react";
+import DetailedInformation from "../DetailedInformation/DetailedInformation";
 
 const favArray = JSON.parse(localStorage.getItem("favorites")) ?? [];
 
 const TeachersItem = ({ item }) => {
   const [heart, setHeart] = useState(false);
-  // console.log(favArray);
+  const [detailedInformationItem, setDetailedInformationItem] = useState(null);
+  const [showModal, setshowModal] = useState(null);
+
+  const handleShowModalItem = () => {
+    setDetailedInformationItem(item);
+    setshowModal(true);
+  };
+
   function handleToggleFavorite({ id }) {
     if (JSON.parse(localStorage.getItem("favorites"))?.includes(id)) {
       const index = favArray.indexOf(id);
@@ -47,18 +55,6 @@ const TeachersItem = ({ item }) => {
     console.log("id", id);
   }
 
-  // function addToFav(id) {
-  //   if (JSON.parse(localStorage.getItem("favorites"))?.includes(id)) {
-  //     const index = favArray.indexOf(id);
-  //     favArray.splice(index, 1);
-  //     localStorage.setItem("favorites", JSON.stringify(favArray));
-  //     setHeart(!heart);
-  //   } else {
-  //     favArray.push(id);
-  //     localStorage.setItem("favorites", JSON.stringify(favArray));
-  //     setHeart(!heart);
-  //   }
-  // }
   const checked = JSON.parse(localStorage.getItem("favorites"))?.includes(
     item.id
   )
@@ -131,7 +127,19 @@ const TeachersItem = ({ item }) => {
                 <p>{item.conditions}</p>
               </TeachersItemContentParamsLi>
             </ul>
-            <TeachersItemReadMore>Read more</TeachersItemReadMore>
+            <>
+              <TeachersItemReadMore onClick={handleShowModalItem}>
+                Read more
+              </TeachersItemReadMore>
+
+              {showModal && (
+                <DetailedInformation
+                  item={detailedInformationItem}
+                  checked={checked}
+                  handleToggleFavorite={handleToggleFavorite}
+                />
+              )}
+            </>
           </TeachersItemContentParams>
           <div>
             <TeachersItemContentlevelsUl>

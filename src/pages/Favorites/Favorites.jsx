@@ -28,6 +28,7 @@ import { SectionTeachers } from "../Teachers/Teachers.Styles";
 
 const Favorites = () => {
   const [teachersData, setTeachersData] = useState(null);
+  const [favoritesData, setFavoritesData] = useState(null);
   const [teachersFilter, setTeachersFilter] = useState(null);
   const [filteredList, setFilteredList] = useState(null);
   const [favorites, setFavorites] = useState([]);
@@ -50,15 +51,39 @@ const Favorites = () => {
     const countRef = query(ref(db, "teachers"));
     onValue(countRef, (snapshot) => {
       const data = snapshot.val();
-      setTeachersData(data);
+      setFavoritesData(data);
     });
   }, [db]);
 
   useEffect(() => {
     if (teachersData) {
+      console.log("teachersData", teachersData);
+      console.log("teachersFilter", teachersFilter);
+      // setFilteredList(teachersFilter);
       setFilteredList(teachersFilter || teachersData);
     }
   }, [teachersFilter, teachersData]);
+  // Фільтрація
+  // useEffect(() => {
+  //   if (favorites.length > 0) {
+  //     const filteredTeachers = favorites.map((favoriteId) =>
+  //       favoritesData.find((teacher) => teacher.id === favoriteId)
+  //     );
+  //     setTeachersData(filteredTeachers);
+  //   }
+  // }, [favoritesData, favorites]);
+
+  useEffect(() => {
+    if (favorites.length > 0 && favoritesData) {
+      const filteredTeachers = favorites
+        .map((favoriteId) =>
+          favoritesData.find((teacher) => teacher && teacher.id === favoriteId)
+        )
+        .filter((teacher) => teacher !== undefined);
+      setTeachersData(filteredTeachers);
+    }
+  }, [favoritesData, favorites]);
+  // Фільтрація
 
   return (
     <SectionTeachers>
