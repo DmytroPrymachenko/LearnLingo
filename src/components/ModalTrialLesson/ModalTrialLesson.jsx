@@ -4,32 +4,23 @@ import {
   ModalTrialAvatarImg,
   ModalTrialLessonDiv,
 } from "./ModalTrialLesson.Styled";
+import { useForm } from "react-hook-form";
 
 const ModalTrialLesson = ({ item }) => {
-  const [trialLesson, setTrialLesson] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    reason: "",
-  });
-  console.log(trialLesson);
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setTrialLesson((prevData) => ({ ...prevData, [name]: value }));
-  };
+  const { register, handleSubmit, errors } = useForm();
+  const [reason, setReason] = useState("");
 
   const handleRadioChange = (e) => {
-    const { value } = e.target;
-    setTrialLesson((prevData) => ({
-      ...prevData,
-      reason: value,
-    }));
+    setReason(e.target.value);
+  };
+
+  const submit = (data) => {
+    console.log(...data, reason);
   };
 
   return (
     <ModalTrialLessonDiv>
-      <form>
+      <form onSubmit={handleSubmit(submit)}>
         <h1>Book trial lesson</h1>
         <span>
           Our experienced tutor will assess your current language level, discuss
@@ -55,6 +46,7 @@ const ModalTrialLesson = ({ item }) => {
               name="reason"
               value="Career and business"
               onChange={handleRadioChange}
+              ref={register({ required: true })}
             />
             <label htmlFor="career">Career and business</label>
           </li>
@@ -65,6 +57,7 @@ const ModalTrialLesson = ({ item }) => {
               name="reason"
               value="Lesson for kids"
               onChange={handleRadioChange}
+              ref={register({ required: true })}
             />
             <label htmlFor="Lesson">Lesson for kids</label>
           </li>
@@ -75,6 +68,7 @@ const ModalTrialLesson = ({ item }) => {
               name="reason"
               value="Living abroad"
               onChange={handleRadioChange}
+              ref={register({ required: true })}
             />
             <label htmlFor="Living">Living abroad</label>
           </li>
@@ -85,6 +79,7 @@ const ModalTrialLesson = ({ item }) => {
               name="reason"
               value="Exams and coursework"
               onChange={handleRadioChange}
+              ref={register({ required: true })}
             />
             <label htmlFor="Exams">Exams and coursework</label>
           </li>
@@ -95,31 +90,32 @@ const ModalTrialLesson = ({ item }) => {
               name="reason"
               value="Culture, travel or hobby"
               onChange={handleRadioChange}
+              ref={register({ required: true })}
             />
             <label htmlFor="Culture">Culture, travel or hobby</label>
           </li>
         </ul>
+        {errors.reason && (
+          <span>Please select a reason for learning English</span>
+        )}
         <div>
           <input
             type="text"
             name="name"
             placeholder="Your name"
-            value={trialLesson.name}
-            onChange={handleInputChange}
+            ref={register({ required: true })}
           />
           <input
             type="email"
             name="email"
             placeholder="Your email"
-            value={trialLesson.email}
-            onChange={handleInputChange}
+            ref={register({ required: true, pattern: /^\S+@\S+$/i })}
           />
           <input
-            type="phone"
+            type="tel"
             name="phone"
             placeholder="Your phone"
-            value={trialLesson.phone}
-            onChange={handleInputChange}
+            ref={register({ required: true, pattern: /^[0-9]{10}$/ })}
           />
         </div>
         <button type="submit">Book</button>
