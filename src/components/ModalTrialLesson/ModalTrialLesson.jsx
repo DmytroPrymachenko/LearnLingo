@@ -3,10 +3,15 @@ import { useState } from "react";
 import {
   ModalTrialAvatarImg,
   ModalTrialLessonDiv,
+  RadioInput,
+  RadioInputDiv,
+  RadioInputIconDiv,
 } from "./ModalTrialLesson.Styled";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import RadioButtonInactive from "../../images/svg/radioButton/RadioButtonInactive";
+import RadioButtonActive from "../../images/svg/radioButton/RadioButtonActive";
 
 const schema = yup.object({
   name: yup
@@ -75,61 +80,101 @@ const ModalTrialLesson = ({ item }) => {
         <h2>What is your main reason for learning English?</h2>
         <ul>
           <li>
-            {value === "Career and business" ? (
-              <p>активна</p>
-            ) : (
-              <p>не активна</p>
-            )}
-            <input
-              {...register("reason")}
-              type="radio"
-              id="career"
-              value="Career and business"
-              // checked
-              onChange={handleRadioChange}
-            />
+            <RadioInputDiv>
+              <RadioInputIconDiv>
+                {value === "Career and business" ? (
+                  <RadioButtonActive />
+                ) : (
+                  <RadioButtonInactive />
+                )}
+              </RadioInputIconDiv>
+              <RadioInput
+                {...register("reason")}
+                type="radio"
+                id="career"
+                value="Career and business"
+                // checked
+                onChange={handleRadioChange}
+              />
+            </RadioInputDiv>
             <span>{errors.reason?.message}</span>
             <label htmlFor="career">Career and business</label>
           </li>
           <li>
-            <input
-              {...register("reason")}
-              type="radio"
-              id="Lesson"
-              // name="reason"
-              value="Lesson for kids"
-              onChange={handleRadioChange}
-            />
+            <RadioInputDiv>
+              <RadioInputIconDiv>
+                {value === "Lesson for kids" ? (
+                  <RadioButtonActive />
+                ) : (
+                  <RadioButtonInactive />
+                )}
+              </RadioInputIconDiv>
+              <RadioInput
+                {...register("reason")}
+                type="radio"
+                id="Lesson"
+                // name="reason"
+                value="Lesson for kids"
+                onChange={handleRadioChange}
+              />
+            </RadioInputDiv>
             <label htmlFor="Lesson">Lesson for kids</label>
           </li>
           <li>
-            <input
-              {...register("reason")}
-              type="radio"
-              id="Living"
-              value="Living abroad"
-              onChange={handleRadioChange}
-            />
+            <RadioInputDiv>
+              <RadioInputIconDiv>
+                {value === "Living abroad" ? (
+                  <RadioButtonActive />
+                ) : (
+                  <RadioButtonInactive />
+                )}
+              </RadioInputIconDiv>
+              <RadioInput
+                {...register("reason")}
+                type="radio"
+                id="Living"
+                value="Living abroad"
+                onChange={handleRadioChange}
+              />
+            </RadioInputDiv>
             <label htmlFor="Living">Living abroad</label>
           </li>
           <li>
-            <input
-              {...register("reason")}
-              type="radio"
-              id="Exams"
-              value="Exams and coursework"
-              onChange={handleRadioChange}
-            />
+            <RadioInputDiv>
+              <RadioInputIconDiv>
+                {value === "Exams and coursework" ? (
+                  <RadioButtonActive />
+                ) : (
+                  <RadioButtonInactive />
+                )}
+              </RadioInputIconDiv>
+              <RadioInput
+                {...register("reason")}
+                type="radio"
+                id="Exams"
+                value="Exams and coursework"
+                onChange={handleRadioChange}
+              />
+            </RadioInputDiv>
             <label htmlFor="Exams">Exams and coursework</label>
           </li>
           <li>
-            <input
-              {...register("reason")}
-              type="radio"
-              id="Culture"
-              value="Culture, travel or hobby"
-              onChange={handleRadioChange}
-            />
+            <RadioInputDiv>
+              <RadioInputIconDiv>
+                {value === "Culture, travel or hobby" ? (
+                  <RadioButtonActive />
+                ) : (
+                  <RadioButtonInactive />
+                )}
+              </RadioInputIconDiv>
+              <RadioInput
+                {...register("reason")}
+                type="radio"
+                id="Culture"
+                value="Culture, travel or hobby"
+                onChange={handleRadioChange}
+              />
+            </RadioInputDiv>
             <label htmlFor="Culture">Culture, travel or hobby</label>
           </li>
         </ul>

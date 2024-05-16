@@ -21,3 +21,21 @@ export const ModalTrialAvatarImg = styled.img`
   width: 44px;
   height: 44px;
 `;
+
+export const RadioInput = styled.input`
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+
+  opacity: 0;
+`;
+export const RadioInputDiv = styled.div`
+  position: relative;
+`;
+
+export const RadioInputIconDiv = styled.div`
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  z-index: -1;
+`;
