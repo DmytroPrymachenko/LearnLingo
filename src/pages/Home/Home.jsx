@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import HomePicture from "../../images/png/HomePicture";
 import DottedLineHome from "../../images/svg/DottedLineHome";
 import {
@@ -28,7 +29,9 @@ const Home = () => {
               Tutors: Elevate your language proficiency to new heights by
               connecting with highly qualified and experienced tutors.
             </HomeTitleSpan>
-            <HomeTitleButton>Get started</HomeTitleButton>
+            <Link to="/teachers">
+              <HomeTitleButton>Get started</HomeTitleButton>
+            </Link>
           </HomeDivTitle>
           <div>
             <HomePicture />

@@ -15,3 +15,9 @@ export const ModalTrialLessonDiv = styled.div`
   border-radius: 30px;
   z-index: 10;
 `;
+
+export const ModalTrialAvatarImg = styled.img`
+  border-radius: 100px;
+  width: 44px;
+  height: 44px;
+`;

@@ -38,8 +38,6 @@ import {
 } from "./DetailedInformation.Styled";
 import Star from "../../images/svg/Star";
 import ImageForComent from "../../images/png/imageForComent.png";
-import { useState } from "react";
-import ModalTrialLesson from "../ModalTrialLesson/ModalTrialLesson";
 
 const DetailedInformation = ({
   item,

@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const DetailedInformationDiv = styled.div`
   position: fixed;
-  top: 25%;
-  left: 25%;
+  top: 20%;
+  left: 20%;
   display: flex;
   /* position: relative; */
   flex-direction: column;
@@ -11,6 +11,7 @@ export const DetailedInformationDiv = styled.div`
   align-items: flex-start;
   padding: 24px;
 
+  /* background-color: #fff; */
   background-color: red;
   border-radius: 30px;
   z-index: 10;
@@ -26,6 +27,7 @@ export const DetailedInformationExperience = styled.p`
   font-size: 16px;
   line-height: 150%;
   color: #121417;
+  max-width: 968px;
 `;
 
 export const ImageForComentDiv = styled.div`
