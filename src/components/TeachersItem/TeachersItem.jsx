@@ -26,6 +26,11 @@ import StarSVG from "../../images/svg/StarSVG";
 import HeartLikeActive from "../../images/svg/HeartLikeActive";
 import { useState } from "react";
 import DetailedInformation from "../DetailedInformation/DetailedInformation";
+import { Backdrop } from "../Header/Header.Styled";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../store/selected";
+import AuthorizationMessage from "../AuthorizationMessage/AuthorizationMessage";
+import ModalTrialLesson from "../ModalTrialLesson/ModalTrialLesson";
 
 const favArray = JSON.parse(localStorage.getItem("favorites")) ?? [];
 
@@ -33,10 +38,28 @@ const TeachersItem = ({ item }) => {
   const [heart, setHeart] = useState(false);
   const [detailedInformationItem, setDetailedInformationItem] = useState(null);
   const [showModal, setshowModal] = useState(null);
+  const user = useSelector(selectUser);
+  const [isUserActive, setIsUserActive] = useState(false);
+  const [trialLessonModal, setTrialLessonModal] = useState(false);
+
+  const handleTrialLesson = () => {
+    setTrialLessonModal(true);
+    setshowModal(false);
+  };
 
   const handleShowModalItem = () => {
-    setDetailedInformationItem(item);
-    setshowModal(true);
+    if (user) {
+      setDetailedInformationItem(item);
+      setshowModal(true);
+    } else {
+      setIsUserActive(true);
+    }
+  };
+
+  const closeModal = () => {
+    setshowModal(false);
+    setTrialLessonModal(false);
+    setIsUserActive(false);
   };
 
   function handleToggleFavorite({ id }) {
@@ -62,6 +85,20 @@ const TeachersItem = ({ item }) => {
     : null;
   return (
     <>
+      {trialLessonModal && (
+        <>
+          <ModalTrialLesson item={detailedInformationItem} />
+          <Backdrop onClick={closeModal} />
+        </>
+      )}
+      <>
+        {isUserActive && (
+          <>
+            <AuthorizationMessage />
+            <Backdrop onClick={closeModal} />
+          </>
+        )}
+      </>
       <TeachersListLi>
         <div>
           <TeachersListImageDiv>
@@ -133,11 +170,16 @@ const TeachersItem = ({ item }) => {
               </TeachersItemReadMore>
 
               {showModal && (
-                <DetailedInformation
-                  item={detailedInformationItem}
-                  checked={checked}
-                  handleToggleFavorite={handleToggleFavorite}
-                />
+                <>
+                  <DetailedInformation
+                    item={detailedInformationItem}
+                    checked={checked}
+                    handleToggleFavorite={handleToggleFavorite}
+                    handleTrialLesson={handleTrialLesson}
+                    trialLesson={trialLessonModal}
+                  />
+                  <Backdrop onClick={closeModal} />
+                </>
               )}
             </>
           </TeachersItemContentParams>

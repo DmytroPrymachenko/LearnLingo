@@ -23,6 +23,8 @@ export const TeachersListLi = styled.li`
   border-radius: 24px;
   padding: 24px;
   gap: 48px;
+  width: 100%;
+  max-width: 1184px;
 `;
 
 export const TeachersListImageTeacher = styled.img`
@@ -47,9 +49,8 @@ export const TeachersListImageSvg = styled.svg`
 export const TeachersListStatusDiv = styled.div`
   display: flex;
   flex-direction: row;
-
+  justify-content: space-between;
   align-items: flex-start;
-  gap: 149px;
 `;
 export const TeachersListStatusDivInternal = styled.div`
   display: flex;
