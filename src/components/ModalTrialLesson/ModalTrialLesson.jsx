@@ -5,17 +5,52 @@ import {
   ModalTrialLessonDiv,
 } from "./ModalTrialLesson.Styled";
 import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+const schema = yup.object({
+  name: yup
+    .string()
+    .min(3, "The name must contain a min of 3 characters")
+    .max(15, "The name must contain a maximum of 32 characters")
+    .required("The name is required"),
+  email: yup
+    .string()
+    .email("Please write a valid email")
+    .matches(
+      /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/
+    )
+    .required("The email is required"),
+
+  phone: yup
+    .string()
+    .matches(
+      /^[+]?[(]?[0-9]{1,4}[)]?[-\s./0-9]*$/,
+      "Please enter a valid phone number"
+    )
+    .required("The phone number is required"),
+  reason: yup.string().required("Необхідно вибрати"),
+});
 
 const ModalTrialLesson = ({ item }) => {
-  const { register, handleSubmit, errors } = useForm();
-  const [reason, setReason] = useState("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    mode: "onChange",
+    resolver: yupResolver(schema),
+  });
 
-  const handleRadioChange = (e) => {
-    setReason(e.target.value);
+  // const [reason, setReason] = useState("");
+  const [value, setValue] = useState("");
+  const handleRadioChange = (event) => {
+    setValue(event.target.value);
   };
 
-  const submit = (data) => {
-    console.log(...data, reason);
+  const submit = ({ name, email, phone, reason }) => {
+    const data = { name, email, phone, reason };
+    console.log(data);
   };
 
   return (
@@ -40,57 +75,60 @@ const ModalTrialLesson = ({ item }) => {
         <h2>What is your main reason for learning English?</h2>
         <ul>
           <li>
+            {value === "Career and business" ? (
+              <p>активна</p>
+            ) : (
+              <p>не активна</p>
+            )}
             <input
+              {...register("reason")}
               type="radio"
               id="career"
-              name="reason"
               value="Career and business"
+              // checked
               onChange={handleRadioChange}
-              ref={register({ required: true })}
             />
+            <span>{errors.reason?.message}</span>
             <label htmlFor="career">Career and business</label>
           </li>
           <li>
             <input
+              {...register("reason")}
               type="radio"
               id="Lesson"
-              name="reason"
+              // name="reason"
               value="Lesson for kids"
               onChange={handleRadioChange}
-              ref={register({ required: true })}
             />
             <label htmlFor="Lesson">Lesson for kids</label>
           </li>
           <li>
             <input
+              {...register("reason")}
               type="radio"
               id="Living"
-              name="reason"
               value="Living abroad"
               onChange={handleRadioChange}
-              ref={register({ required: true })}
             />
             <label htmlFor="Living">Living abroad</label>
           </li>
           <li>
             <input
+              {...register("reason")}
               type="radio"
               id="Exams"
-              name="reason"
               value="Exams and coursework"
               onChange={handleRadioChange}
-              ref={register({ required: true })}
             />
             <label htmlFor="Exams">Exams and coursework</label>
           </li>
           <li>
             <input
+              {...register("reason")}
               type="radio"
               id="Culture"
-              name="reason"
               value="Culture, travel or hobby"
               onChange={handleRadioChange}
-              ref={register({ required: true })}
             />
             <label htmlFor="Culture">Culture, travel or hobby</label>
           </li>
@@ -99,24 +137,30 @@ const ModalTrialLesson = ({ item }) => {
           <span>Please select a reason for learning English</span>
         )}
         <div>
+          <>
+            <input
+              {...register("name")}
+              type="text"
+              id="name"
+              placeholder="Your name"
+            />
+            <span>{errors.name?.message}</span>
+          </>
           <input
-            type="text"
-            name="name"
-            placeholder="Your name"
-            ref={register({ required: true })}
-          />
-          <input
+            {...register("email")}
             type="email"
-            name="email"
+            id="email"
             placeholder="Your email"
-            ref={register({ required: true, pattern: /^\S+@\S+$/i })}
           />
-          <input
-            type="tel"
-            name="phone"
-            placeholder="Your phone"
-            ref={register({ required: true, pattern: /^[0-9]{10}$/ })}
-          />
+          <>
+            <input
+              {...register("phone")}
+              type="tel"
+              id="phone"
+              placeholder="Your phone"
+            />
+            <span>{errors.phone?.message}</span>
+          </>
         </div>
         <button type="submit">Book</button>
       </form>
