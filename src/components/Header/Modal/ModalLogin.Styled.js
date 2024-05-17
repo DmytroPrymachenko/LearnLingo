@@ -26,6 +26,10 @@ export const ModalLoginForm = styled.form`
   transform: translate(-50%, -50%);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   z-index: 10;
+  transition: transform 0.3s ease;
+  &:hover {
+    transform: translate(-50%, -50%) scale(1.05); /* Enlarge on hover */
+  }
 `;
 export const ModalLoginDiv = styled.div`
   display: flex;
@@ -56,8 +60,11 @@ export const ModalLoginButton = styled.button`
   padding: 16px;
   cursor: pointer;
   border: none;
+  transition: transform 0.3s ease, background 0.3s ease;
+
   &:focus,
   &:hover {
     background: #ffdc86;
+    transform: scale(1.05);
   }
 `;

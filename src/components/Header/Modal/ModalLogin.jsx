@@ -2,22 +2,46 @@ import { useDispatch } from "react-redux";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 import { setUser } from "../../../store/slices/userSlice";
-import { useState } from "react";
+
 import {
   ModalLoginButton,
   ModalLoginDiv,
   ModalLoginForm,
   ModalLoginInput,
 } from "./ModalLogin.Styled";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import { ModalTrialSpanError } from "../../ModalTrialLesson/ModalTrialLesson.Styled";
+
+const schema = yup.object({
+  email: yup
+    .string()
+    .required("The email is required")
+    .email("Please write a valid email")
+    .matches(
+      /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/,
+      { message: "Please write a valid email" }
+    ),
+  password: yup
+    .string()
+    .required("The password is required")
+    .min(6, "The password must contain a minimum of 6 characters"),
+});
 
 const ModalLogin = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPass] = useState("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    mode: "onChange",
+    resolver: yupResolver(schema),
+  });
 
   const dispatch = useDispatch();
 
-  const handleLogin = (e) => {
-    e.preventDefault();
+  const handleLogin = ({ email, password }) => {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
@@ -38,26 +62,34 @@ const ModalLogin = () => {
 
   return (
     <>
-      <ModalLoginForm>
+      <ModalLoginForm onSubmit={handleSubmit(handleLogin)}>
         <ModalLoginDiv>
           <h1>Log In</h1>
           <span>
             Welcome back! Please enter your credentials to access your account
             and continue your search for an teacher.
           </span>
-          <ModalLoginInput
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="email"
-          />
-          <ModalLoginInput
-            type="password"
-            value={password}
-            onChange={(e) => setPass(e.target.value)}
-            placeholder="password"
-          />
-          <ModalLoginButton onClick={handleLogin}>Log In</ModalLoginButton>
+          <>
+            <ModalLoginInput
+              {...register("email")}
+              type="email"
+              id="email"
+              placeholder="Your email"
+            />
+            <ModalTrialSpanError>{errors.email?.message}</ModalTrialSpanError>
+          </>
+          <>
+            <ModalLoginInput
+              {...register("password")}
+              type="password"
+              id="password"
+              placeholder="password"
+            />
+            <ModalTrialSpanError>
+              {errors.password?.message}
+            </ModalTrialSpanError>
+          </>
+          <ModalLoginButton>Log In</ModalLoginButton>
         </ModalLoginDiv>
       </ModalLoginForm>
     </>
