@@ -31,6 +31,7 @@ export const RadioInput = styled.input`
 `;
 export const RadioInputDiv = styled.div`
   position: relative;
+  height: 18px;
 `;
 
 export const RadioInputIconDiv = styled.div`
@@ -38,4 +39,45 @@ export const RadioInputIconDiv = styled.div`
   top: -3px;
   left: -3px;
   z-index: -1;
+`;
+export const RadioLabel = styled.label`
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 137%;
+  text-align: center;
+  color: #121417;
+  cursor: pointer;
+  &:hover {
+    color: #f4c550;
+  }
+
+  &:focus {
+    color: #f4c550;
+  }
+  &:checked {
+    color: red;
+  }
+`;
+export const RadioLi = styled.li`
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 8px;
+`;
+export const RadioUl = styled.ul`
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 17px;
+  justify-content: center;
+`;
+export const ModalTrialExperienced = styled.span`
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 137%;
+  color: rgba(18, 20, 23, 0.8);
+`;
+
+export const ModalTrialForm = styled.div`
+  max-width: 472px;
 `;

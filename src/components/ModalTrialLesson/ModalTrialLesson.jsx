@@ -2,10 +2,15 @@
 import { useState } from "react";
 import {
   ModalTrialAvatarImg,
+  ModalTrialExperienced,
+  ModalTrialForm,
   ModalTrialLessonDiv,
   RadioInput,
   RadioInputDiv,
   RadioInputIconDiv,
+  RadioLabel,
+  RadioLi,
+  RadioUl,
 } from "./ModalTrialLesson.Styled";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -60,155 +65,158 @@ const ModalTrialLesson = ({ item }) => {
 
   return (
     <ModalTrialLessonDiv>
-      <form onSubmit={handleSubmit(submit)}>
-        <h1>Book trial lesson</h1>
-        <span>
-          Our experienced tutor will assess your current language level, discuss
-          your learning goals, and tailor the lesson to your specific needs.
-        </span>
-        <div>
+      <ModalTrialForm>
+        <form onSubmit={handleSubmit(submit)}>
+          <h1>Book trial lesson</h1>
+          <ModalTrialExperienced>
+            Our experienced tutor will assess your current language level,
+            discuss your learning goals, and tailor the lesson to your specific
+            needs.
+          </ModalTrialExperienced>
           <div>
-            <ModalTrialAvatarImg src={item.avatar_url}></ModalTrialAvatarImg>
+            <div>
+              <ModalTrialAvatarImg src={item.avatar_url}></ModalTrialAvatarImg>
+            </div>
+            <div>
+              <span>Your teacher</span>
+              <span>
+                {item.name} {item.surname}
+              </span>
+            </div>
           </div>
+          <h2>What is your main reason for learning English?</h2>
+          <RadioUl>
+            <RadioLi>
+              <RadioInputDiv>
+                <RadioInputIconDiv>
+                  {value === "Career and business" ? (
+                    <RadioButtonActive />
+                  ) : (
+                    <RadioButtonInactive />
+                  )}
+                </RadioInputIconDiv>
+                <RadioInput
+                  {...register("reason")}
+                  type="radio"
+                  id="career"
+                  value="Career and business"
+                  // checked
+                  onChange={handleRadioChange}
+                />
+              </RadioInputDiv>
+
+              <RadioLabel htmlFor="career">Career and business</RadioLabel>
+            </RadioLi>
+            <RadioLi>
+              <RadioInputDiv>
+                <RadioInputIconDiv>
+                  {value === "Lesson for kids" ? (
+                    <RadioButtonActive />
+                  ) : (
+                    <RadioButtonInactive />
+                  )}
+                </RadioInputIconDiv>
+                <RadioInput
+                  {...register("reason")}
+                  type="radio"
+                  id="Lesson"
+                  // name="reason"
+                  value="Lesson for kids"
+                  onChange={handleRadioChange}
+                />
+              </RadioInputDiv>
+              <RadioLabel htmlFor="Lesson">Lesson for kids</RadioLabel>
+            </RadioLi>
+            <RadioLi>
+              <RadioInputDiv>
+                <RadioInputIconDiv>
+                  {value === "Living abroad" ? (
+                    <RadioButtonActive />
+                  ) : (
+                    <RadioButtonInactive />
+                  )}
+                </RadioInputIconDiv>
+                <RadioInput
+                  {...register("reason")}
+                  type="radio"
+                  id="Living"
+                  value="Living abroad"
+                  onChange={handleRadioChange}
+                />
+              </RadioInputDiv>
+              <RadioLabel htmlFor="Living">Living abroad</RadioLabel>
+            </RadioLi>
+            <RadioLi>
+              <RadioInputDiv>
+                <RadioInputIconDiv>
+                  {value === "Exams and coursework" ? (
+                    <RadioButtonActive />
+                  ) : (
+                    <RadioButtonInactive />
+                  )}
+                </RadioInputIconDiv>
+                <RadioInput
+                  {...register("reason")}
+                  type="radio"
+                  id="Exams"
+                  value="Exams and coursework"
+                  onChange={handleRadioChange}
+                />
+              </RadioInputDiv>
+              <RadioLabel htmlFor="Exams">Exams and coursework</RadioLabel>
+            </RadioLi>
+            <RadioLi>
+              <RadioInputDiv>
+                <RadioInputIconDiv>
+                  {value === "Culture, travel or hobby" ? (
+                    <RadioButtonActive />
+                  ) : (
+                    <RadioButtonInactive />
+                  )}
+                </RadioInputIconDiv>
+                <RadioInput
+                  {...register("reason")}
+                  type="radio"
+                  id="Culture"
+                  value="Culture, travel or hobby"
+                  onChange={handleRadioChange}
+                />
+              </RadioInputDiv>
+              <RadioLabel htmlFor="Culture">
+                Culture, travel or hobby
+              </RadioLabel>
+            </RadioLi>
+          </RadioUl>
+          <span>{errors.reason?.message}</span>
           <div>
-            <span>Your teacher</span>
-            <span>
-              {item.name} {item.surname}
-            </span>
+            <>
+              <input
+                {...register("name")}
+                type="text"
+                id="name"
+                placeholder="Your name"
+              />
+              <span>{errors.name?.message}</span>
+            </>
+            <input
+              {...register("email")}
+              type="email"
+              id="email"
+              placeholder="Your email"
+            />
+            <>
+              <input
+                {...register("phone")}
+                type="tel"
+                id="phone"
+                placeholder="Your phone"
+              />
+              <span>{errors.phone?.message}</span>
+            </>
           </div>
-        </div>
-        <h2>What is your main reason for learning English?</h2>
-        <ul>
-          <li>
-            <RadioInputDiv>
-              <RadioInputIconDiv>
-                {value === "Career and business" ? (
-                  <RadioButtonActive />
-                ) : (
-                  <RadioButtonInactive />
-                )}
-              </RadioInputIconDiv>
-              <RadioInput
-                {...register("reason")}
-                type="radio"
-                id="career"
-                value="Career and business"
-                // checked
-                onChange={handleRadioChange}
-              />
-            </RadioInputDiv>
-            <span>{errors.reason?.message}</span>
-            <label htmlFor="career">Career and business</label>
-          </li>
-          <li>
-            <RadioInputDiv>
-              <RadioInputIconDiv>
-                {value === "Lesson for kids" ? (
-                  <RadioButtonActive />
-                ) : (
-                  <RadioButtonInactive />
-                )}
-              </RadioInputIconDiv>
-              <RadioInput
-                {...register("reason")}
-                type="radio"
-                id="Lesson"
-                // name="reason"
-                value="Lesson for kids"
-                onChange={handleRadioChange}
-              />
-            </RadioInputDiv>
-            <label htmlFor="Lesson">Lesson for kids</label>
-          </li>
-          <li>
-            <RadioInputDiv>
-              <RadioInputIconDiv>
-                {value === "Living abroad" ? (
-                  <RadioButtonActive />
-                ) : (
-                  <RadioButtonInactive />
-                )}
-              </RadioInputIconDiv>
-              <RadioInput
-                {...register("reason")}
-                type="radio"
-                id="Living"
-                value="Living abroad"
-                onChange={handleRadioChange}
-              />
-            </RadioInputDiv>
-            <label htmlFor="Living">Living abroad</label>
-          </li>
-          <li>
-            <RadioInputDiv>
-              <RadioInputIconDiv>
-                {value === "Exams and coursework" ? (
-                  <RadioButtonActive />
-                ) : (
-                  <RadioButtonInactive />
-                )}
-              </RadioInputIconDiv>
-              <RadioInput
-                {...register("reason")}
-                type="radio"
-                id="Exams"
-                value="Exams and coursework"
-                onChange={handleRadioChange}
-              />
-            </RadioInputDiv>
-            <label htmlFor="Exams">Exams and coursework</label>
-          </li>
-          <li>
-            <RadioInputDiv>
-              <RadioInputIconDiv>
-                {value === "Culture, travel or hobby" ? (
-                  <RadioButtonActive />
-                ) : (
-                  <RadioButtonInactive />
-                )}
-              </RadioInputIconDiv>
-              <RadioInput
-                {...register("reason")}
-                type="radio"
-                id="Culture"
-                value="Culture, travel or hobby"
-                onChange={handleRadioChange}
-              />
-            </RadioInputDiv>
-            <label htmlFor="Culture">Culture, travel or hobby</label>
-          </li>
-        </ul>
-        {errors.reason && (
-          <span>Please select a reason for learning English</span>
-        )}
-        <div>
-          <>
-            <input
-              {...register("name")}
-              type="text"
-              id="name"
-              placeholder="Your name"
-            />
-            <span>{errors.name?.message}</span>
-          </>
-          <input
-            {...register("email")}
-            type="email"
-            id="email"
-            placeholder="Your email"
-          />
-          <>
-            <input
-              {...register("phone")}
-              type="tel"
-              id="phone"
-              placeholder="Your phone"
-            />
-            <span>{errors.phone?.message}</span>
-          </>
-        </div>
-        <button type="submit">Book</button>
-      </form>
+          <button type="submit">Book</button>
+        </form>
+      </ModalTrialForm>
     </ModalTrialLessonDiv>
   );
 };
