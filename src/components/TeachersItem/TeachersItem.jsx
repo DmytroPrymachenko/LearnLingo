@@ -119,6 +119,7 @@ const TeachersItem = ({ item }) => {
             openModalLogin={openModalLogin}
             item={detailedInformationItem}
             openModalRegister={openModalRegister}
+            closeModal={closeModal}
           />
           <Backdrop closeModal={closeModal} />
         </>

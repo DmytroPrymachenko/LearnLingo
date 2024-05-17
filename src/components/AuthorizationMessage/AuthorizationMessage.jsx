@@ -1,24 +1,45 @@
+import { ModalLoginButton } from "../Header/Modal/ModalLogin.Styled";
+import TapSVG from "../../images/svg/TapSVG";
 import {
+  AuthorizationButtonEsc,
   AuthorizationDiv,
+  AuthorizationMessageContentDiv,
   AuthorizationMessageDiv,
+  AuthorizationMessageH1,
+  AuthorizationMessageSpan,
 } from "./AuthorizationMessage.Styled";
+import SVGEsc from "../../images/svg/SVGEsc";
 
-const AuthorizationMessage = ({ openModalLogin, openModalRegister }) => {
+const AuthorizationMessage = ({
+  openModalLogin,
+  openModalRegister,
+  closeModal,
+}) => {
   return (
     <AuthorizationMessageDiv>
+      <AuthorizationButtonEsc onClick={closeModal}>
+        <SVGEsc />
+      </AuthorizationButtonEsc>
       <AuthorizationDiv>
-        <h1>Привіт Друг!</h1>
-        <span>
-          Для можливості користування додатковими послугами сервісу необхідна
-          авторизація
-        </span>
-        <button onClick={openModalLogin}>Залогінитись</button>
-        <span>
-          Друг у разі якщо ти ще не зареєструвався, рекомендуємо натиснути на цю
-          кнопочку для реєстрації
-          {/* <TapSVG /> */}
-        </span>
-        <button onClick={openModalRegister}>Реєстрація</button>
+        <AuthorizationMessageH1>Hello, friend!</AuthorizationMessageH1>
+        <AuthorizationMessageContentDiv>
+          <>
+            <AuthorizationMessageSpan>
+              To continue using extra possibilities of service you need to log
+              in by clicking the button below <TapSVG />
+            </AuthorizationMessageSpan>
+            <ModalLoginButton onClick={openModalLogin}>Log In</ModalLoginButton>
+          </>
+          <>
+            <AuthorizationMessageSpan>
+              Friend, in case you have not registered yet, please be sure to
+              press the button below to continue <TapSVG />
+            </AuthorizationMessageSpan>
+            <ModalLoginButton onClick={openModalRegister}>
+              Register
+            </ModalLoginButton>
+          </>
+        </AuthorizationMessageContentDiv>
       </AuthorizationDiv>
     </AuthorizationMessageDiv>
   );

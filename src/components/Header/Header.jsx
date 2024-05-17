@@ -33,14 +33,14 @@ const Header = () => {
       {isModalLogin && (
         <>
           <Backdrop closeModal={closeModal} />
-          <ModalLogin />
+          <ModalLogin closeModal={closeModal} />
         </>
       )}
 
       {isModalRegister && (
         <>
           <Backdrop closeModal={closeModal} />
-          <ModalRegister />
+          <ModalRegister closeModal={closeModal} />
         </>
       )}
       <HeaderSection>

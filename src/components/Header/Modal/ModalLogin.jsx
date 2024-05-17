@@ -6,8 +6,12 @@ import { setUser } from "../../../store/slices/userSlice";
 import {
   ModalLoginButton,
   ModalLoginDiv,
+  ModalLoginDivInput,
   ModalLoginForm,
+  ModalLoginH1,
   ModalLoginInput,
+  ModalLoginInputDiv,
+  ModalLoginSpan,
 } from "./ModalLogin.Styled";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -18,7 +22,7 @@ const schema = yup.object({
   email: yup
     .string()
     .required("The email is required")
-    .email("Please write a valid email")
+    .email("Please write a valid e-mail")
     .matches(
       /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/,
       { message: "Please write a valid email" }
@@ -64,31 +68,33 @@ const ModalLogin = () => {
     <>
       <ModalLoginForm onSubmit={handleSubmit(handleLogin)}>
         <ModalLoginDiv>
-          <h1>Log In</h1>
-          <span>
+          <ModalLoginH1>Log In</ModalLoginH1>
+          <ModalLoginSpan>
             Welcome back! Please enter your credentials to access your account
-            and continue your search for an teacher.
-          </span>
-          <>
-            <ModalLoginInput
-              {...register("email")}
-              type="email"
-              id="email"
-              placeholder="Your email"
-            />
-            <ModalTrialSpanError>{errors.email?.message}</ModalTrialSpanError>
-          </>
-          <>
-            <ModalLoginInput
-              {...register("password")}
-              type="password"
-              id="password"
-              placeholder="password"
-            />
-            <ModalTrialSpanError>
-              {errors.password?.message}
-            </ModalTrialSpanError>
-          </>
+            and continue your search for a teacher.
+          </ModalLoginSpan>
+          <ModalLoginDivInput>
+            <ModalLoginInputDiv>
+              <ModalLoginInput
+                {...register("email")}
+                type="email"
+                id="email"
+                placeholder="Your email"
+              />
+              <ModalTrialSpanError>{errors.email?.message}</ModalTrialSpanError>
+            </ModalLoginInputDiv>
+            <ModalLoginInputDiv>
+              <ModalLoginInput
+                {...register("password")}
+                type="password"
+                id="password"
+                placeholder="password"
+              />
+              <ModalTrialSpanError>
+                {errors.password?.message}
+              </ModalTrialSpanError>
+            </ModalLoginInputDiv>
+          </ModalLoginDivInput>
           <ModalLoginButton>Log In</ModalLoginButton>
         </ModalLoginDiv>
       </ModalLoginForm>
