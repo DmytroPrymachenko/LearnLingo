@@ -6,11 +6,15 @@ import { getAuth, signOut } from "firebase/auth";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import IconHero from "../../../images/svg/IconHero";
+import { useState } from "react";
+import Backdrop from "../../Backdrop/Backdrop";
+import ModalLogAut from "../../Modal/ModalLogAut/ModalLogAut";
 
 const HeaderClientIsAuthorized = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const navigate = useNavigate();
+  const [isModalLogAut, setisModalLogAut] = useState(false);
 
   function logAut() {
     const auth = getAuth();
@@ -27,13 +31,27 @@ const HeaderClientIsAuthorized = () => {
       });
     // dispatch(logout());
   }
+  const openLogAut = () => {
+    setisModalLogAut(true);
+  };
 
+  const closeModal = () => {
+    setisModalLogAut(false);
+  };
   return (
-    <div>
-      <IconHero />
-      {user.name}
-      <button onClick={logAut}>Вийти</button>
-    </div>
+    <>
+      {isModalLogAut && (
+        <>
+          <Backdrop closeModal={closeModal} />
+          <ModalLogAut logAut={logAut} />
+        </>
+      )}
+      <div>
+        <IconHero />
+        {user.name}
+        <button onClick={openLogAut}>Вийти</button>
+      </div>
+    </>
   );
 };
 

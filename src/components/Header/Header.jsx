@@ -14,6 +14,7 @@ import Backdrop from "../Backdrop/Backdrop";
 const Header = () => {
   const [isModalLogin, setIsModalLogin] = useState(false);
   const [isModalRegister, setIsModalRegister] = useState(false);
+
   const user = useSelector(selectUser);
   const openModalLogin = () => {
     setIsModalLogin((prevState) => !prevState);

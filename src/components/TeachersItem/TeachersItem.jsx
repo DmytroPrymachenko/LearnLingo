@@ -92,8 +92,6 @@ const TeachersItem = ({ item }) => {
       localStorage.setItem("favorites", JSON.stringify(favArray));
       setHeart(!heart);
     }
-
-    console.log("id", id);
   }
 
   const checked = JSON.parse(localStorage.getItem("favorites"))?.includes(
