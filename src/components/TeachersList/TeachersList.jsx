@@ -19,16 +19,6 @@ const TeachersList = ({ dataList }) => {
   const [teachersList, setTeachersList] = useState(null);
   const [loadedItems, setLoadedItems] = useState(4);
 
-  // const db = getDatabase();
-
-  // useEffect(() => {
-  //   const countRef = query(ref(db, "teachers"), limitToFirst(4)); // Отримуємо перші 4 об'єкти
-  //   onValue(countRef, (snapshot) => {
-  //     const data = snapshot.val();
-  //     setTeachersList(data);
-  //   });
-  // }, [db]);
-
   useEffect(() => {
     if (dataList) {
       console.log(dataList);

@@ -1,24 +1,5 @@
 import { useEffect, useState } from "react";
 
-// const Favorites = () => {
-//   const [favorites, setFavorites] = useState([]);
-
-//   const getFavoritesFromLocalStorage = () => {
-//     const storedFavorites = localStorage.getItem("favorites");
-//     if (storedFavorites) {
-//       setFavorites(JSON.parse(storedFavorites));
-//     }
-//   };
-
-//   useEffect(() => {
-//     getFavoritesFromLocalStorage();
-//   }, []);
-
-//   return <div>Favorites</div>;
-// };
-
-// export default Favorites;
-
 import TeachersFilter from "../../components/TeachersFilter/TeachersFilter";
 import TeachersList from "../../components/TeachersList/TeachersList";
 
@@ -63,15 +44,6 @@ const Favorites = () => {
       setFilteredList(teachersFilter || teachersData);
     }
   }, [teachersFilter, teachersData]);
-  // Фільтрація
-  // useEffect(() => {
-  //   if (favorites.length > 0) {
-  //     const filteredTeachers = favorites.map((favoriteId) =>
-  //       favoritesData.find((teacher) => teacher.id === favoriteId)
-  //     );
-  //     setTeachersData(filteredTeachers);
-  //   }
-  // }, [favoritesData, favorites]);
 
   useEffect(() => {
     if (favorites.length > 0 && favoritesData) {
@@ -84,6 +56,9 @@ const Favorites = () => {
     }
   }, [favoritesData, favorites]);
   // Фільтрація
+  useEffect(() => {
+    getFavoritesFromLocalStorage();
+  }, []);
 
   return (
     <SectionTeachers>
