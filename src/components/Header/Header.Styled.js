@@ -10,21 +10,12 @@ export const HeaderSection = styled.div`
   margin-top: 20px;
 `;
 
-export const Backdrop = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  backdrop-filter: grayscale(100%);
-  z-index: 1;
-`;
-
 export const HeaderDivLink = styled.div`
   display: flex;
   gap: 28px;
 `;
 
+export const Backdrop = styled.div``;
 export const HeaderLink = styled(NavLink)`
   font-weight: 400;
   font-size: 16px;

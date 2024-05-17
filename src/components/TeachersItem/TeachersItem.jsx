@@ -26,12 +26,15 @@ import StarSVG from "../../images/svg/StarSVG";
 import HeartLikeActive from "../../images/svg/HeartLikeActive";
 import { useState } from "react";
 import DetailedInformation from "../DetailedInformation/DetailedInformation";
-import { Backdrop } from "../Header/Header.Styled";
+
 import { useSelector } from "react-redux";
 import { selectUser } from "../../store/selected";
-import AuthorizationMessage from "../AuthorizationMessage/AuthorizationMessage";
-import ModalTrialLesson from "../ModalTrialLesson/ModalTrialLesson";
 
+import ModalTrialLesson from "../ModalTrialLesson/ModalTrialLesson";
+import Backdrop from "../Backdrop/Backdrop";
+import ModalLogin from "../Header/Modal/ModalLogin";
+import ModalRegister from "../Header/Modal/ModalRegister";
+import AuthorizationMessage from "../AuthorizationMessage/AuthorizationMessage";
 const favArray = JSON.parse(localStorage.getItem("favorites")) ?? [];
 
 const TeachersItem = ({ item }) => {
@@ -41,7 +44,17 @@ const TeachersItem = ({ item }) => {
   const user = useSelector(selectUser);
   const [isUserActive, setIsUserActive] = useState(false);
   const [trialLessonModal, setTrialLessonModal] = useState(false);
-
+  const [isAuthorizationMessage, setIsAuthorizationMessage] = useState(false);
+  const [isModalLogin, setIsModalLogin] = useState(false);
+  const [isModalRegister, setIsModalRegister] = useState(false);
+  const openModalLogin = () => {
+    setIsModalLogin(true);
+    setIsAuthorizationMessage(false);
+  };
+  const openModalRegister = () => {
+    setIsModalRegister(true);
+    setIsAuthorizationMessage(false);
+  };
   const handleTrialLesson = () => {
     setTrialLessonModal(true);
     setshowModal(false);
@@ -60,8 +73,13 @@ const TeachersItem = ({ item }) => {
     setshowModal(false);
     setTrialLessonModal(false);
     setIsUserActive(false);
+    setIsAuthorizationMessage(false);
+    setIsModalRegister(false);
+    setIsModalLogin(false);
   };
-
+  const needAuth = () => {
+    setIsAuthorizationMessage(true);
+  };
   function handleToggleFavorite({ id }) {
     if (JSON.parse(localStorage.getItem("favorites"))?.includes(id)) {
       const index = favArray.indexOf(id);
@@ -85,17 +103,39 @@ const TeachersItem = ({ item }) => {
     : null;
   return (
     <>
+      {isModalLogin && (
+        <>
+          <ModalLogin />
+          <Backdrop closeModal={closeModal} />
+        </>
+      )}
+      {isModalRegister && (
+        <>
+          <ModalRegister />
+          <Backdrop closeModal={closeModal} />
+        </>
+      )}
+      {isAuthorizationMessage && (
+        <>
+          <AuthorizationMessage
+            openModalLogin={openModalLogin}
+            item={detailedInformationItem}
+            openModalRegister={openModalRegister}
+          />
+          <Backdrop closeModal={closeModal} />
+        </>
+      )}
       {trialLessonModal && (
         <>
           <ModalTrialLesson item={detailedInformationItem} />
-          <Backdrop onClick={closeModal} />
+          <Backdrop closeModal={closeModal} />
         </>
       )}
       <>
         {isUserActive && (
           <>
             <AuthorizationMessage />
-            <Backdrop onClick={closeModal} />
+            <Backdrop closeModal={closeModal} />
           </>
         )}
       </>
@@ -137,7 +177,7 @@ const TeachersItem = ({ item }) => {
                 </TeachersListStatusLi>
               </TeachersListStatusUl>
               <ButtonTeachersFavorite
-                onClick={() => handleToggleFavorite(item)}
+                onClick={user ? () => handleToggleFavorite(item) : needAuth}
               >
                 {checked ? <HeartLikeActive /> : <HeartLike />}
               </ButtonTeachersFavorite>

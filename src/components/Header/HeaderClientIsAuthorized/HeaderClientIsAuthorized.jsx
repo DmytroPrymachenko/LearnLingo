@@ -5,6 +5,7 @@ import { getAuth, signOut } from "firebase/auth";
 
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import IconHero from "../../../images/svg/IconHero";
 
 const HeaderClientIsAuthorized = () => {
   const dispatch = useDispatch();
@@ -29,6 +30,7 @@ const HeaderClientIsAuthorized = () => {
 
   return (
     <div>
+      <IconHero />
       {user.name}
       <button onClick={logAut}>Вийти</button>
     </div>

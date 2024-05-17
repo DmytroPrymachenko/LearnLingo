@@ -48,12 +48,9 @@ function App() {
       <GlobalStyles isHomePage={isHomePage} />
       <Routes>
         <Route element={<Layout />}>
-          <>
-            <Route path="/teachers" element={<Teachers />} />
-            <Route path="/" element={<Home />} />
-          </>
-
-          <Route path="/favorites" element={<Favorites />} />
+          <Route path="/teachers" element={<Teachers />} />
+          <Route path="/" element={<Home />} />
+          {user ? <Route path="/favorites" element={<Favorites />} /> : null}
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

@@ -1,11 +1,6 @@
 import { Link } from "react-router-dom";
 import IconHeader from "../../images/svg/IconHeader";
-import {
-  Backdrop,
-  HeaderDivLink,
-  HeaderLink,
-  HeaderSection,
-} from "./Header.Styled";
+import { HeaderDivLink, HeaderLink, HeaderSection } from "./Header.Styled";
 
 import { useState } from "react";
 import ModalRegister from "./Modal/ModalRegister";
@@ -14,6 +9,7 @@ import HeaderNeedAuthorization from "./HeaderNeedAuthorization/HeaderNeedAuthori
 import { useSelector } from "react-redux";
 import { selectUser } from "../../store/selected";
 import HeaderClientIsAuthorized from "./HeaderClientIsAuthorized/HeaderClientIsAuthorized";
+import Backdrop from "../Backdrop/Backdrop";
 
 const Header = () => {
   const [isModalLogin, setIsModalLogin] = useState(false);
@@ -28,20 +24,21 @@ const Header = () => {
 
   const closeModal = () => {
     setIsModalLogin(false);
+    setIsModalRegister(false);
   };
 
   return (
     <>
       {isModalLogin && (
         <>
-          <Backdrop onClick={closeModal} />
+          <Backdrop closeModal={closeModal} />
           <ModalLogin />
         </>
       )}
 
       {isModalRegister && (
         <>
-          <Backdrop />
+          <Backdrop closeModal={closeModal} />
           <ModalRegister />
         </>
       )}

@@ -17,17 +17,13 @@ export const ModalLoginFormDiv = styled.div`
 `;
 
 export const ModalLoginForm = styled.form`
-  position: fixed;
-  top: 35%;
-  left: 35%;
-  display: flex;
-  /* position: relative; */
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 64px;
-  max-width: 566px;
-  background-color: red;
+  background-color: #fff;
+  padding: 24px;
   border-radius: 30px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   z-index: 10;
 `;
