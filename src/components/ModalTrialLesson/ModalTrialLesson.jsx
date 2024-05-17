@@ -2,9 +2,20 @@
 import { useState } from "react";
 import {
   ModalTrialAvatarImg,
+  ModalTrialAvatarNameDiv,
+  ModalTrialAvatarTitleDiv,
+  ModalTrialButton,
   ModalTrialExperienced,
   ModalTrialForm,
+  ModalTrialH1,
+  ModalTrialH2,
+  ModalTrialInput,
+  ModalTrialInputDiv,
   ModalTrialLessonDiv,
+  ModalTrialNameSpan,
+  ModalTrialSpanError,
+  ModalTrialTitleDiv,
+  ModalTrialYourTeacherSpan,
   RadioInput,
   RadioInputDiv,
   RadioInputIconDiv,
@@ -67,24 +78,32 @@ const ModalTrialLesson = ({ item }) => {
     <ModalTrialLessonDiv>
       <ModalTrialForm>
         <form onSubmit={handleSubmit(submit)}>
-          <h1>Book trial lesson</h1>
-          <ModalTrialExperienced>
-            Our experienced tutor will assess your current language level,
-            discuss your learning goals, and tailor the lesson to your specific
-            needs.
-          </ModalTrialExperienced>
-          <div>
-            <div>
-              <ModalTrialAvatarImg src={item.avatar_url}></ModalTrialAvatarImg>
-            </div>
-            <div>
-              <span>Your teacher</span>
-              <span>
-                {item.name} {item.surname}
-              </span>
-            </div>
-          </div>
-          <h2>What is your main reason for learning English?</h2>
+          <ModalTrialTitleDiv>
+            <ModalTrialH1>Book trial lesson</ModalTrialH1>
+            <ModalTrialExperienced>
+              Our experienced tutor will assess your current language level,
+              discuss your learning goals, and tailor the lesson to your
+              specific needs.
+            </ModalTrialExperienced>
+            <ModalTrialAvatarTitleDiv>
+              <div>
+                <ModalTrialAvatarImg
+                  src={item.avatar_url}
+                ></ModalTrialAvatarImg>
+              </div>
+              <ModalTrialAvatarNameDiv>
+                <ModalTrialYourTeacherSpan>
+                  Your teacher
+                </ModalTrialYourTeacherSpan>
+                <ModalTrialNameSpan>
+                  {item.name} {item.surname}
+                </ModalTrialNameSpan>
+              </ModalTrialAvatarNameDiv>
+            </ModalTrialAvatarTitleDiv>
+          </ModalTrialTitleDiv>
+          <ModalTrialH2>
+            What is your main reason for learning English?
+          </ModalTrialH2>
           <RadioUl>
             <RadioLi>
               <RadioInputDiv>
@@ -187,34 +206,39 @@ const ModalTrialLesson = ({ item }) => {
               </RadioLabel>
             </RadioLi>
           </RadioUl>
-          <span>{errors.reason?.message}</span>
-          <div>
+          <ModalTrialSpanError>{errors.reason?.message}</ModalTrialSpanError>
+          <ModalTrialInputDiv>
             <>
-              <input
+              <ModalTrialInput
                 {...register("name")}
                 type="text"
                 id="name"
                 placeholder="Your name"
               />
-              <span>{errors.name?.message}</span>
+              <ModalTrialSpanError>
+                {errors.name?.message || ""}
+              </ModalTrialSpanError>
             </>
-            <input
-              {...register("email")}
-              type="email"
-              id="email"
-              placeholder="Your email"
-            />
             <>
-              <input
+              <ModalTrialInput
+                {...register("email")}
+                type="email"
+                id="email"
+                placeholder="Your email"
+              />
+              <ModalTrialSpanError>{errors.email?.message}</ModalTrialSpanError>
+            </>
+            <>
+              <ModalTrialInput
                 {...register("phone")}
                 type="tel"
                 id="phone"
                 placeholder="Your phone"
               />
-              <span>{errors.phone?.message}</span>
+              <ModalTrialSpanError>{errors.phone?.message}</ModalTrialSpanError>
             </>
-          </div>
-          <button type="submit">Book</button>
+          </ModalTrialInputDiv>
+          <ModalTrialButton type="submit">Book</ModalTrialButton>
         </form>
       </ModalTrialForm>
     </ModalTrialLessonDiv>

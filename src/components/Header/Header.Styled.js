@@ -30,6 +30,30 @@ export const HeaderLink = styled(NavLink)`
   font-size: 16px;
   line-height: 20px;
   color: #121417;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 4px;
+    background-color: #f4c550;
+    border-radius: 20px;
+    transition: width 0.5s ease-in-out;
+  }
+
+  &.active::before {
+    width: 100%;
+    opacity: 1;
+  }
+
+  &.inactive::before {
+    width: 0;
+    opacity: 0;
+  }
 `;
 
 export const HeaderSpanLogin = styled.span`
