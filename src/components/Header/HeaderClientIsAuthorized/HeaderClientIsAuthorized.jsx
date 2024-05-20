@@ -7,8 +7,9 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import IconHero from "../../../images/svg/IconHero";
 import { useState } from "react";
-import Backdrop from "../../Backdrop/Backdrop";
+
 import ModalLogAut from "../../Modal/ModalLogAut/ModalLogAut";
+import BackdropActive from "../../Backdrop/BackdropActive";
 
 const HeaderClientIsAuthorized = () => {
   const dispatch = useDispatch();
@@ -42,8 +43,8 @@ const HeaderClientIsAuthorized = () => {
     <>
       {isModalLogAut && (
         <>
-          <Backdrop closeModal={closeModal} />
-          <ModalLogAut logAut={logAut} />
+          <BackdropActive closeModal={closeModal} />
+          <ModalLogAut logAut={logAut} closeModal={closeModal} />
         </>
       )}
       <div>

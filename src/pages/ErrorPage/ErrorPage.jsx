@@ -42,7 +42,7 @@ const ErrorPage = () => {
     indicatorSeparator: () => ({
       display: "none",
     }),
-    control: (provided, state) => ({
+    control: (provided) => ({
       ...provided,
       fontSize: "16px",
       paddingLeft: "18px",

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const ModalLogAutDiv = styled.div`
   background-color: #fff;
-  padding: 24px;
+  padding: 64px;
   border-radius: 30px;
   position: fixed;
   top: 50%;
@@ -10,4 +10,53 @@ export const ModalLogAutDiv = styled.div`
   transform: translate(-50%, -50%);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   z-index: 10;
+`;
+export const LogAutDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+export const LogAutH1 = styled.h1``;
+export const LogAutSpan = styled.span``;
+export const LogAutButtonDiv = styled.div`
+  display: flex;
+  gap: 30px;
+`;
+
+export const LogAutButtonlogAut = styled.button`
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 156%;
+  color: #121417;
+  background: #f4c550;
+  border-radius: 12px;
+  padding: 16px;
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  transition: transform 0.3s ease, background 0.3s ease;
+
+  &:focus,
+  &:hover {
+    background: #ffdc86;
+    transform: scale(1.05);
+  }
+`;
+export const LogAutButtonClose = styled.button`
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 156%;
+  color: #121417;
+  background: #f4c550;
+  border-radius: 12px;
+  padding: 16px;
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  transition: transform 0.3s ease, background 0.3s ease;
+
+  &:focus,
+  &:hover {
+    background: #ffdc86;
+    transform: scale(1.05);
+  }
 `;
