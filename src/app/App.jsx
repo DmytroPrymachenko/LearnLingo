@@ -1,4 +1,4 @@
-import { Route, Routes, Navigate, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Layout from "../components/Layout/Layout";
 import Home from "../pages/Home/Home";
 import Teachers from "../pages/Teachers/Teachers";
@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import { setUser } from "../store/slices/userSlice";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { toast } from "react-toastify";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 function App() {
   const location = useLocation();
@@ -52,7 +53,7 @@ function App() {
           <Route path="/" element={<Home />} />
           {user ? <Route path="/favorites" element={<Favorites />} /> : null}
         </Route>
-        <Route path="*" element={<Navigate to="/" />} />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </>
   );

@@ -5,6 +5,6 @@ export const BackdropActiveDiv = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  backdrop-filter: grayscale(100%);
+  backdrop-filter: blur(2px);
   z-index: 1;
 `;

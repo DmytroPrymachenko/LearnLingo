@@ -7,6 +7,8 @@ import {
 import { nanoid } from "nanoid";
 import TeachersItem from "../TeachersItem/TeachersItem";
 import { useEffect, useState } from "react";
+import AbsentTeachers from "../AbsentTeachers/AbsentTeachers";
+import BackdropActive from "../Backdrop/BackdropActive";
 // import {
 //   getDatabase,
 //   limitToFirst,
@@ -33,7 +35,10 @@ const TeachersList = ({ dataList }) => {
   return (
     <>
       {!teachersList ? (
-        <h1>Данні відсутні</h1>
+        <>
+          <AbsentTeachers />
+          <BackdropActive />
+        </>
       ) : (
         <TeachersListDiv>
           <TeachersListUl>

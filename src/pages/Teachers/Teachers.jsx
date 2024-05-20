@@ -28,13 +28,15 @@ const Teachers = () => {
   }, [teachersFilter, teachersData]);
 
   return (
-    <SectionTeachers>
-      <TeachersFilter
-        data={teachersData}
-        setTeachersFilter={setTeachersFilter}
-      />
-      <TeachersList dataList={filteredList} />
-    </SectionTeachers>
+    <>
+      <SectionTeachers>
+        <TeachersFilter
+          data={teachersData}
+          setTeachersFilter={setTeachersFilter}
+        />
+        <TeachersList dataList={filteredList} />
+      </SectionTeachers>
+    </>
   );
 };
 
