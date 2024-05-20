@@ -32,21 +32,23 @@ const TeachersList = ({ dataList }) => {
 
   return (
     <>
-      <TeachersListDiv>
-        <TeachersListUl>
-          {teachersList &&
-            teachersList
-              .slice(0, loadedItems)
-              .map((item) => <TeachersItem key={nanoid()} item={item} />)}
-        </TeachersListUl>
-        {teachersList && teachersList.length > loadedItems && (
-          <TeachersListLoadMore onClick={handleLoadMore}>
-            Load more
-          </TeachersListLoadMore>
-        )}
-      </TeachersListDiv>
+      {!teachersList ? (
+        <h1>Данні відсутні</h1>
+      ) : (
+        <TeachersListDiv>
+          <TeachersListUl>
+            {teachersList.slice(0, loadedItems).map((item) => (
+              <TeachersItem key={nanoid()} item={item} />
+            ))}
+          </TeachersListUl>
+          {teachersList.length > loadedItems && (
+            <TeachersListLoadMore onClick={handleLoadMore}>
+              Load more
+            </TeachersListLoadMore>
+          )}
+        </TeachersListDiv>
+      )}
     </>
   );
 };
-
 export default TeachersList;
