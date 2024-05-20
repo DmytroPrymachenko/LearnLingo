@@ -34,6 +34,7 @@ const ErrorPage = () => {
 
   const handleTimeChange = (selectedOption) => {
     setSelectedTime(selectedOption);
+    console.log(selectedOption);
   };
 
   const customStyles = {
