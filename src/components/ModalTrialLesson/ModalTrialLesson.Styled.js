@@ -112,12 +112,26 @@ export const ModalTrialInput = styled.input`
   border-radius: 12px;
   padding: 16px 16px 16px 18px;
   width: 100%;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    border-color: #f4c550;
+    box-shadow: 0 0 5px #f4c550;
+    transform: scale(1.02);
+  }
+
+  &:focus {
+    border-color: #f4c550;
+    box-shadow: 0 0 5px #f4c550;
+    outline: none;
+    transform: scale(1.02);
+  }
 `;
 export const ModalTrialSpanError = styled.span`
   font-weight: 400;
   font-size: 16px;
   line-height: 137%;
-  text-align: center;
+
   color: red;
 `;
 export const ModalTrialButton = styled.button`

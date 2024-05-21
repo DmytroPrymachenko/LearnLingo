@@ -17,6 +17,8 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { ModalTrialSpanError } from "../../ModalTrialLesson/ModalTrialLesson.Styled";
+import { AuthorizationButtonEsc } from "../../AuthorizationMessage/AuthorizationMessage.Styled";
+import SVGEsc from "../../../images/svg/SVGEsc";
 
 const schema = yup.object({
   email: yup
@@ -33,7 +35,7 @@ const schema = yup.object({
     .min(6, "The password must contain a minimum of 6 characters"),
 });
 
-const ModalLogin = () => {
+const ModalLogin = ({ closeModal }) => {
   const {
     register,
     handleSubmit,
@@ -67,6 +69,9 @@ const ModalLogin = () => {
   return (
     <>
       <ModalLoginForm onSubmit={handleSubmit(handleLogin)}>
+        <AuthorizationButtonEsc onClick={closeModal}>
+          <SVGEsc />
+        </AuthorizationButtonEsc>
         <ModalLoginDiv>
           <ModalLoginH1>Log In</ModalLoginH1>
           <ModalLoginSpan>

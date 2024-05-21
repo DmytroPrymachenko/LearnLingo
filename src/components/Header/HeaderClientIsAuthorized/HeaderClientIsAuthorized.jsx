@@ -6,7 +6,7 @@ import { getAuth, signOut } from "firebase/auth";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import IconHero from "../../../images/svg/IconHero";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import ModalLogAut from "../../Modal/ModalLogAut/ModalLogAut";
 import BackdropActive from "../../Backdrop/BackdropActive";
@@ -47,6 +47,19 @@ const HeaderClientIsAuthorized = () => {
   const closeModal = () => {
     setisModalLogAut(false);
   };
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        closeModal();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
   return (
     <>
       {isModalLogAut && (

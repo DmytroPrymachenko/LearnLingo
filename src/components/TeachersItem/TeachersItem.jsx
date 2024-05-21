@@ -25,7 +25,7 @@ import TeachersListImageActive from "../../images/svg/TeachersListImageActive";
 import LessonsOnlineSVG from "../../images/svg/LessonsOnlineSVG";
 import StarSVG from "../../images/svg/StarSVG";
 import HeartLikeActive from "../../images/svg/HeartLikeActive";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DetailedInformation from "../DetailedInformation/DetailedInformation";
 
 import { useSelector } from "react-redux";
@@ -36,6 +36,7 @@ import Backdrop from "../Backdrop/Backdrop";
 import ModalLogin from "../Header/Modal/ModalLogin";
 import ModalRegister from "../Header/Modal/ModalRegister";
 import AuthorizationMessage from "../AuthorizationMessage/AuthorizationMessage";
+import BackdropActive from "../Backdrop/BackdropActive";
 const favArray = JSON.parse(localStorage.getItem("favorites")) ?? [];
 
 const TeachersItem = ({ item }) => {
@@ -78,6 +79,19 @@ const TeachersItem = ({ item }) => {
     setIsModalRegister(false);
     setIsModalLogin(false);
   };
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        closeModal();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
   const needAuth = () => {
     setIsAuthorizationMessage(true);
   };
@@ -104,13 +118,13 @@ const TeachersItem = ({ item }) => {
     <>
       {isModalLogin && (
         <>
-          <ModalLogin />
+          <ModalLogin closeModal={closeModal} />
           <Backdrop closeModal={closeModal} />
         </>
       )}
       {isModalRegister && (
         <>
-          <ModalRegister />
+          <ModalRegister closeModal={closeModal} />
           <Backdrop closeModal={closeModal} />
         </>
       )}
@@ -127,14 +141,17 @@ const TeachersItem = ({ item }) => {
       )}
       {trialLessonModal && (
         <>
-          <ModalTrialLesson item={detailedInformationItem} />
-          <Backdrop closeModal={closeModal} />
+          <ModalTrialLesson
+            item={detailedInformationItem}
+            closeModal={closeModal}
+          />
+          <BackdropActive closeModal={closeModal} />
         </>
       )}
       <>
         {isUserActive && (
           <>
-            <AuthorizationMessage />
+            <AuthorizationMessage closeModal={closeModal} />
             <Backdrop closeModal={closeModal} />
           </>
         )}
@@ -218,8 +235,9 @@ const TeachersItem = ({ item }) => {
                     handleToggleFavorite={handleToggleFavorite}
                     handleTrialLesson={handleTrialLesson}
                     trialLesson={trialLessonModal}
+                    closeModal={closeModal}
                   />
-                  <Backdrop onClick={closeModal} />
+                  <BackdropActive closeModal={closeModal} />
                 </>
               )}
             </>

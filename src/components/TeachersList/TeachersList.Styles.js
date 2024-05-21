@@ -52,7 +52,7 @@ export const TeachersListStatusDiv = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   width: 100%;
-  gap: 149px;
+  gap: 192px;
 `;
 export const TeachersListStatusDivInternal = styled.div`
   display: flex;

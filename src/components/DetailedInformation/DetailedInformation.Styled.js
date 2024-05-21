@@ -12,7 +12,7 @@ export const DetailedInformationDiv = styled.div`
   padding: 24px;
 
   /* background-color: #fff; */
-  background-color: red;
+  background-color: #fff;
   border-radius: 30px;
   z-index: 10;
 `;

@@ -1,5 +1,11 @@
 import Select from "react-select";
-import { TeachersFilterDiv, TeachersFilterSpan } from "./TeachersFilter.Styles";
+import {
+  FilterInputDivLanguages,
+  FilterInputDivLevel,
+  FilterInputDivPrice,
+  TeachersFilterDiv,
+  TeachersFilterSpan,
+} from "./TeachersFilter.Styles";
 import { useEffect, useState } from "react";
 
 const customComponents = {
@@ -9,21 +15,75 @@ const customComponents = {
   indicatorSeparator: () => ({
     display: "none",
   }),
-  control: () => ({
-    display: "flex",
+  dropdownIndicator: (provided, state) => ({
+    ...provided,
+    color: state.isFocused ? "#F4C550" : "#121417",
+    transform: state.selectProps.menuIsOpen ? "rotate(180deg)" : "rotate(0deg)",
+    ":hover": {
+      color: state.isFocused ? "#F4C550" : "#121417",
+    },
+    ":active": {
+      transform: "rotate(0deg)",
+    },
+  }),
+  control: (provided, state) => ({
+    ...provided,
+    fontSize: "16px",
+
+    paddingLeft: "18px",
+    border: "none",
+    borderRadius: "14px",
+    cursor: "pointer",
+    overflowY: "hidden",
+    width: "100%",
+    height: "52px",
+    boxShadow: state.isFocused ? "0 0 0 1px #FBE9BA" : "none",
+    "&:hover": {
+      boxShadow: "0 0 0 1px #FBE9BA",
+    },
   }),
   menu: (provided) => ({
     ...provided,
     border: "none",
-  }),
-  option: (provided, { isFocused }) => ({
-    ...provided,
-    color: isFocused ? "#121417" : "rgba(18, 20, 23, 0.2)",
-    backgroundColor: "transparent",
+    borderRadius: "12px",
+    width: "100%",
 
-    fontWeight: 500,
+    boxShadow: "0 20px 69px 0 rgba(0, 0, 0, 0.07)",
+    "&::-webkit-scrollbar": {
+      display: "none",
+    },
+  }),
+  menuList: (provided) => ({
+    ...provided,
+    overflowY: "auto",
+    paddingTop: "0px",
+  }),
+  option: (provided, state) => ({
+    ...provided,
+    padding: "8px",
+    backgroundColor: "transparent",
+    color: state.isFocused
+      ? "#121417"
+      : state.isSelected
+      ? "#000 bolt"
+      : "rgba(18, 20, 23, 0.2)",
+
+    cursor: "pointer",
+    overflowY: "hidden",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "flex-start",
+
+    fontWeight: "500",
+
+    lineHeight: "125%",
+
     fontSize: "18px",
-    lineHeight: "111%",
+    // lineHeight: "111%",
+  }),
+  singleValue: (provided) => ({
+    ...provided,
+    fontWeight: "bold",
   }),
 };
 
@@ -104,7 +164,7 @@ const TeachersFilter = ({ data, setTeachersFilter }) => {
     { value: "All", label: "All" },
     ...allPrices.map((price) => ({
       value: price,
-      label: price === "All" ? "All" : `${price}$`,
+      label: price === "All" ? "All" : `${price} $`,
     })),
   ];
 
@@ -168,13 +228,13 @@ const TeachersFilter = ({ data, setTeachersFilter }) => {
       setTeachersFilter(filteredTeachers);
     }
   };
-
+  console.log(selectedPrice);
   return (
     <>
       <>
         <section>
           <TeachersFilterDiv>
-            <div>
+            <FilterInputDivLanguages>
               <TeachersFilterSpan>Languages</TeachersFilterSpan>
               <Select
                 options={optionsLanguages}
@@ -187,8 +247,8 @@ const TeachersFilter = ({ data, setTeachersFilter }) => {
                 }
                 placeholder={"All"}
               />
-            </div>
-            <div>
+            </FilterInputDivLanguages>
+            <FilterInputDivLevel>
               <TeachersFilterSpan>Level of knowledge</TeachersFilterSpan>
               <Select
                 options={optionsLevel}
@@ -201,20 +261,21 @@ const TeachersFilter = ({ data, setTeachersFilter }) => {
                 }
                 placeholder={"All"}
               />
-            </div>
-            <div>
+            </FilterInputDivLevel>
+            <FilterInputDivPrice>
               <TeachersFilterSpan>Price</TeachersFilterSpan>
               <Select
                 options={optionsPrices}
+                styles={customComponents}
                 onChange={handlePriceChange}
                 value={
                   selectedPrice
-                    ? { value: selectedPrice, label: `${selectedPrice}$` }
+                    ? { value: selectedPrice, label: `${selectedPrice} $` }
                     : null
                 }
                 placeholder={"All"}
               />
-            </div>
+            </FilterInputDivPrice>
           </TeachersFilterDiv>
         </section>
       </>

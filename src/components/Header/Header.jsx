@@ -2,14 +2,15 @@ import { Link } from "react-router-dom";
 import IconHeader from "../../images/svg/IconHeader";
 import { HeaderDivLink, HeaderLink, HeaderSection } from "./Header.Styled";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ModalRegister from "./Modal/ModalRegister";
 import ModalLogin from "./Modal/ModalLogin";
 import HeaderNeedAuthorization from "./HeaderNeedAuthorization/HeaderNeedAuthorization";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../store/selected";
-import HeaderClientIsAuthorized from "./HeaderClientIsAuthorized/HeaderClientIsAuthorized";
+
 import Backdrop from "../Backdrop/Backdrop";
+import HeaderClientIsAuthorized from "./HeaderClientIsAuthorized/HeaderClientIsAuthorized";
 
 const Header = () => {
   const [isModalLogin, setIsModalLogin] = useState(false);
@@ -27,6 +28,19 @@ const Header = () => {
     setIsModalLogin(false);
     setIsModalRegister(false);
   };
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        closeModal();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   return (
     <>

@@ -21,3 +21,19 @@ export const ModalRegisterDiv = styled.div`
   justify-content: center;
   max-width: 438px;
 `;
+export const ModalRegisterInputDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding-bottom: 40px;
+`;
+export const ModalRegisterDivTitle = styled.div`
+  padding-bottom: 40px;
+`;
+export const ModalRegisterSpan = styled.span`
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 137%;
+  color: rgba(18, 20, 23, 0.8);
+  padding-bottom: 40px;
+`;
