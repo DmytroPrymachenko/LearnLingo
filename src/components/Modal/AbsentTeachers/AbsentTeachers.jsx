@@ -6,9 +6,7 @@ const AbsentTeachers = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [countdown, setCountdown] = useState(7);
-  // ntcn
-  const [imageUsers, setImageUsers] = useState("");
-  // ntcn
+
   useEffect(() => {
     if (countdown <= 0) {
       if (location.pathname === "/favorites") {
