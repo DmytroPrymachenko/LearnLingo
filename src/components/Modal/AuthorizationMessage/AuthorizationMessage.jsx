@@ -1,4 +1,4 @@
-import { ModalLoginButton } from "../Modal/ModalAuth/ModalLogin.Styled.js";
+import { ModalLoginButton } from "../ModalAuth/ModalLogin.Styled";
 import TapSVG from "../../../images/svg/TapSVG";
 import {
   AuthorizationButtonEsc,

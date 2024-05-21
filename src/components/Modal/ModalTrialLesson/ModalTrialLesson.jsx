@@ -26,8 +26,8 @@ import {
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import RadioButtonInactive from "../../images/svg/radioButton/RadioButtonInactive";
-import RadioButtonActive from "../../images/svg/radioButton/RadioButtonActive";
+import RadioButtonInactive from "../../../images/svg/radioButton/RadioButtonInactive";
+import RadioButtonActive from "../../../images/svg/radioButton/RadioButtonActive";
 
 const schema = yup.object({
   name: yup

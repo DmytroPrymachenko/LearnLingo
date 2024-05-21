@@ -1,4 +1,4 @@
-import TeachersListImageActive from "../../images/svg/TeachersListImageActive";
+import TeachersListImageActive from "../../../images/svg/TeachersListImageActive";
 import {
   ButtonTeachersFavorite,
   TeachersItemContent,
@@ -17,12 +17,12 @@ import {
   TeachersListStatusDivInternal,
   TeachersListStatusLi,
   TeachersListStatusUl,
-} from "../TeachersList/TeachersList.Styles";
+} from "../../TeachersList/TeachersList.Styles";
 
-import HeartLike from "../../images/svg/HeartLike";
-import LessonsOnlineSVG from "../../images/svg/LessonsOnlineSVG";
-import StarSVG from "../../images/svg/StarSVG";
-import HeartLikeActive from "../../images/svg/HeartLikeActive";
+import HeartLike from "../../../images/svg/HeartLike";
+import LessonsOnlineSVG from "../../../images/svg/LessonsOnlineSVG";
+import StarSVG from "../../../images/svg/StarSVG";
+import HeartLikeActive from "../../../images/svg/HeartLikeActive";
 
 import {
   BookLessonButton,
@@ -36,8 +36,8 @@ import {
   DetailedReviewsStarRatingDiv,
   ImageForComentDiv,
 } from "./DetailedInformation.Styled";
-import Star from "../../images/svg/Star";
-import ImageForComent from "../../images/png/imageForComent.png";
+import Star from "../../../images/svg/Star";
+import ImageForComent from "../../../images/png/imageForComent.png";
 
 const DetailedInformation = ({
   item,

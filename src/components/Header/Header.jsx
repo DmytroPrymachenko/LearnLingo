@@ -3,8 +3,8 @@ import IconHeader from "../../images/svg/IconHeader";
 import { HeaderDivLink, HeaderLink, HeaderSection } from "./Header.Styled";
 
 import { useEffect, useState } from "react";
-import ModalRegister from "./Modal/ModalRegister";
-import ModalLogin from "./Modal/ModalLogin";
+import ModalRegister from "../Modal/ModalAuth/ModalRegister";
+import ModalLogin from "../Modal/ModalAuth/ModalLogin";
 import HeaderNeedAuthorization from "./HeaderNeedAuthorization/HeaderNeedAuthorization";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../store/selected";

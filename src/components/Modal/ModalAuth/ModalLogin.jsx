@@ -16,8 +16,8 @@ import {
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { ModalTrialSpanError } from "../../ModalTrialLesson/ModalTrialLesson.Styled";
-import { AuthorizationButtonEsc } from "../../AuthorizationMessage/AuthorizationMessage.Styled";
+import { ModalTrialSpanError } from "../ModalTrialLesson/ModalTrialLesson.Styled";
+import { AuthorizationButtonEsc } from "../AuthorizationMessage/AuthorizationMessage.Styled";
 import SVGEsc from "../../../images/svg/SVGEsc";
 
 const schema = yup.object({

@@ -26,16 +26,16 @@ import LessonsOnlineSVG from "../../images/svg/LessonsOnlineSVG";
 import StarSVG from "../../images/svg/StarSVG";
 import HeartLikeActive from "../../images/svg/HeartLikeActive";
 import { useEffect, useState } from "react";
-import DetailedInformation from "../DetailedInformation/DetailedInformation";
+import DetailedInformation from "../Modal/DetailedInformation/DetailedInformation";
 
 import { useSelector } from "react-redux";
 import { selectUser } from "../../store/selected";
 
-import ModalTrialLesson from "../ModalTrialLesson/ModalTrialLesson";
+import ModalTrialLesson from "../Modal/ModalTrialLesson/ModalTrialLesson";
 import Backdrop from "../Backdrop/Backdrop";
-import ModalLogin from "../Header/Modal/ModalLogin";
-import ModalRegister from "../Header/Modal/ModalRegister";
-import AuthorizationMessage from "../AuthorizationMessage/AuthorizationMessage";
+import ModalLogin from "../Modal/ModalAuth/ModalLogin";
+import ModalRegister from "../Modal/ModalAuth/ModalRegister";
+import AuthorizationMessage from "../Modal/AuthorizationMessage/AuthorizationMessage";
 import BackdropActive from "../Backdrop/BackdropActive";
 const favArray = JSON.parse(localStorage.getItem("favorites")) ?? [];
 

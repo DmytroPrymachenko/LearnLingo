@@ -23,9 +23,9 @@ import {
 } from "./ModalRegister.Styled";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { ModalTrialSpanError } from "../../ModalTrialLesson/ModalTrialLesson.Styled";
+import { ModalTrialSpanError } from "../ModalTrialLesson/ModalTrialLesson.Styled";
 
-import { AuthorizationButtonEsc } from "../../AuthorizationMessage/AuthorizationMessage.Styled";
+import { AuthorizationButtonEsc } from "../AuthorizationMessage/AuthorizationMessage.Styled";
 import SVGEsc from "../../../images/svg/SVGEsc";
 
 const schema = yup.object({
