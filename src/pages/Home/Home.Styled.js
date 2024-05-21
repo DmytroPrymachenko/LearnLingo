@@ -17,16 +17,6 @@ export const HomeDivTitle = styled.div`
   padding: 98px 108px 98px 64px;
   background: #f8f8f8;
 `;
-export const HomeTitleH1 = styled.h1`
-  max-width: 548px;
-
-  font-weight: 500;
-  font-size: 48px;
-  line-height: 117%;
-  letter-spacing: -0.02em;
-  color: #121417;
-  padding-bottom: 32px;
-`;
 
 export const HomeTitleSpan = styled.span`
   max-width: 471px;
@@ -97,4 +87,30 @@ export const HomeStatisticsSpanText = styled.span`
   letter-spacing: -0.02em;
   color: rgba(18, 20, 23, 0.7);
   /* white-space: nowrap; */
+`;
+
+export const HomeFrameLanguage = styled.div`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 195px;
+  height: 40px;
+  padding-bottom: 7px;
+  background: #fbe9ba;
+  border-radius: 8px;
+  z-index: 1;
+  margin: 0 8px;
+`;
+export const HomeTitleH1 = styled.h1`
+  max-width: 548px;
+
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 117%;
+  letter-spacing: -0.02em;
+  color: #121417;
+  padding-bottom: 32px;
+  position: relative;
+  background: transparent;
+  z-index: 2;
 `;

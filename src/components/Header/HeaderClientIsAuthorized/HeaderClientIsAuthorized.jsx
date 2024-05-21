@@ -10,6 +10,14 @@ import { useState } from "react";
 
 import ModalLogAut from "../../Modal/ModalLogAut/ModalLogAut";
 import BackdropActive from "../../Backdrop/BackdropActive";
+import {
+  ClientIsAuthorizedButton,
+  ClientIsAuthorizedDiv,
+  ClientIsAuthorizedLogOut,
+  ClientIsAuthorizedName,
+  ClientIsAuthorizedNameDiv,
+} from "./HeaderClientIsAuthorized.Styled";
+import IconHeaderLogin from "../../../images/svg/IconHeaderLogin";
 
 const HeaderClientIsAuthorized = () => {
   const dispatch = useDispatch();
@@ -47,11 +55,16 @@ const HeaderClientIsAuthorized = () => {
           <ModalLogAut logAut={logAut} closeModal={closeModal} />
         </>
       )}
-      <div>
-        <IconHero />
-        {user.name}
-        <button onClick={openLogAut}>Вийти</button>
-      </div>
+      <ClientIsAuthorizedDiv>
+        <ClientIsAuthorizedNameDiv>
+          <IconHero />
+          <ClientIsAuthorizedName>{user.name}</ClientIsAuthorizedName>
+        </ClientIsAuthorizedNameDiv>
+        <ClientIsAuthorizedButton onClick={openLogAut}>
+          <IconHeaderLogin />
+          <ClientIsAuthorizedLogOut>Log out</ClientIsAuthorizedLogOut>
+        </ClientIsAuthorizedButton>
+      </ClientIsAuthorizedDiv>
     </>
   );
 };

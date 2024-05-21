@@ -5,6 +5,7 @@ import {
   HomeDivLeft,
   HomeDivTitle,
   HomeDottedLineDiv,
+  HomeFrameLanguage,
   HomeStatisticsDiv,
   HomeStatisticsSpanNumber,
   HomeStatisticsSpanText,
@@ -22,7 +23,8 @@ const Home = () => {
         <HomeDivLeft>
           <HomeDivTitle>
             <HomeTitleH1>
-              Unlock your potential with the best language tutors
+              Unlock your potential with the best
+              <HomeFrameLanguage>language</HomeFrameLanguage> tutors
             </HomeTitleH1>
             <HomeTitleSpan>
               Embark on an Exciting Language Journey with Expert Language

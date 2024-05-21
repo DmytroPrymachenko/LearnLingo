@@ -15,11 +15,23 @@ export const LogAutDiv = styled.div`
   display: flex;
   flex-direction: column;
 `;
-export const LogAutH1 = styled.h1``;
-export const LogAutSpan = styled.span``;
+export const LogAutH1 = styled.h1`
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 120%;
+  letter-spacing: -0.02em;
+  padding-bottom: 20px;
+`;
+export const LogAutSpan = styled.span`
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 137%;
+  color: rgba(18, 20, 23, 0.8);
+  padding-bottom: 40px;
+`;
 export const LogAutButtonDiv = styled.div`
   display: flex;
-  gap: 30px;
+  gap: 50px;
 `;
 
 export const LogAutButtonlogAut = styled.button`

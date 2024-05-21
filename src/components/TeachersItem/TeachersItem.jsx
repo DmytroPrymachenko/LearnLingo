@@ -19,6 +19,7 @@ import {
   TeachersListStatusDivInternal,
   TeachersListStatusLi,
   TeachersListStatusUl,
+  TeachersitemLTitleDiv,
 } from "../TeachersList/TeachersList.Styles";
 import TeachersListImageActive from "../../images/svg/TeachersListImageActive";
 import LessonsOnlineSVG from "../../images/svg/LessonsOnlineSVG";
@@ -146,43 +147,44 @@ const TeachersItem = ({ item }) => {
           </TeachersListImageDiv>
         </div>
         <TeachersItemContent>
-          <TeachersListStatusDiv>
-            <TeachersItemTitleDiv>
-              <TeachersItemParameters>Languages</TeachersItemParameters>
+          <TeachersitemLTitleDiv>
+            <TeachersListStatusDiv>
+              <TeachersItemTitleDiv>
+                <TeachersItemParameters>Languages</TeachersItemParameters>
+              </TeachersItemTitleDiv>
 
-              <TeachersItemNameSpan>
-                {item.name} {item.surname}
-              </TeachersItemNameSpan>
-            </TeachersItemTitleDiv>
-            <TeachersListStatusDivInternal>
-              <TeachersListStatusUl>
-                <TeachersListStatusLi>
-                  <LessonsOnlineSVG />
-                  <span>Lessons online</span>
-                </TeachersListStatusLi>
-                <TeachersListStatusLi>
-                  <span>Lessons done: {item.lessons_done}</span>
-                </TeachersListStatusLi>
-                <TeachersListStatusLi>
-                  <StarSVG />
-                  <span>Rating: {item.rating}</span>
-                </TeachersListStatusLi>
-                <TeachersListStatusLi>
-                  <span>Price / 1 hour:</span>
+              <TeachersListStatusDivInternal>
+                <TeachersListStatusUl>
+                  <TeachersListStatusLi>
+                    <LessonsOnlineSVG />
+                    <span>Lessons online</span>
+                  </TeachersListStatusLi>
+                  <TeachersListStatusLi>
+                    <span>Lessons done: {item.lessons_done}</span>
+                  </TeachersListStatusLi>
+                  <TeachersListStatusLi>
+                    <StarSVG />
+                    <span>Rating: {item.rating}</span>
+                  </TeachersListStatusLi>
+                  <TeachersListStatusLi>
+                    <span>Price / 1 hour:</span>
 
-                  <TeachersItemPriceSpan>
-                    {item.price_per_hour}$
-                  </TeachersItemPriceSpan>
-                </TeachersListStatusLi>
-              </TeachersListStatusUl>
-              <ButtonTeachersFavorite
-                onClick={user ? () => handleToggleFavorite(item) : needAuth}
-              >
-                {checked ? <HeartLikeActive /> : <HeartLike />}
-              </ButtonTeachersFavorite>
-            </TeachersListStatusDivInternal>
-          </TeachersListStatusDiv>
-
+                    <TeachersItemPriceSpan>
+                      {item.price_per_hour}$
+                    </TeachersItemPriceSpan>
+                  </TeachersListStatusLi>
+                </TeachersListStatusUl>
+                <ButtonTeachersFavorite
+                  onClick={user ? () => handleToggleFavorite(item) : needAuth}
+                >
+                  {checked ? <HeartLikeActive /> : <HeartLike />}
+                </ButtonTeachersFavorite>
+              </TeachersListStatusDivInternal>
+            </TeachersListStatusDiv>
+            <TeachersItemNameSpan>
+              {item.name} {item.surname}
+            </TeachersItemNameSpan>
+          </TeachersitemLTitleDiv>
           <TeachersItemContentParams>
             <ul>
               <TeachersItemContentParamsLi>

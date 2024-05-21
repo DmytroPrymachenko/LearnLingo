@@ -51,12 +51,16 @@ export const TeachersListStatusDiv = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
+  width: 100%;
+  gap: 149px;
 `;
 export const TeachersListStatusDivInternal = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+
   gap: 64px;
+  width: 100%;
+  justify-content: space-between;
 `;
 export const TeachersListStatusUl = styled.ul`
   display: flex;
@@ -120,6 +124,7 @@ export const TeachersItemContent = styled.div`
   display: flex;
   gap: 32px;
   flex-direction: column;
+  width: 100%;
 `;
 
 export const TeachersItemReadMore = styled.button`
@@ -198,4 +203,11 @@ export const TeachersListLoadMore = styled.button`
   justify-content: center;
   background: #f4c550;
   border: none;
+`;
+
+export const TeachersitemLTitleDiv = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  gap: 8px;
+  flex-direction: column;
 `;
