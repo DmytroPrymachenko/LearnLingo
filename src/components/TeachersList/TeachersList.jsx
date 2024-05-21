@@ -7,8 +7,9 @@ import {
 import { nanoid } from "nanoid";
 import TeachersItem from "../TeachersItem/TeachersItem";
 import { useEffect, useState } from "react";
-import AbsentTeachers from "../Modal/AbsentTeachers/AbsentTeachers";
+
 import BackdropActive from "../Backdrop/BackdropActive";
+import AbsentTeachers from "../Modal/AbsentTeachers/AbsentTeachers";
 // import {
 //   getDatabase,
 //   limitToFirst,
